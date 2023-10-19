@@ -139,7 +139,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AssetMan.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="StateMan.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AssetMan.hpp" />
+    <ClInclude Include="State.hpp" />
+    <ClInclude Include="StateMan.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
