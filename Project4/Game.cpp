@@ -3,10 +3,10 @@
 #include "Game.hpp"
 #include "MainMenu.hpp"
 
-Game::Game() : m_context(std::make_shared<Context>())
+Game::Game() : context(std::make_shared<GameContext>())
 {
-    m_context->m_window->create(sf::VideoMode(640, 352), "Snake Game", sf::Style::Close);
-    m_context->m_states->Add(std::make_unique<MainMenu>(m_context));
+    context->window->create(sf::VideoMode(1280, 720), "Snake Game", sf::Style::Close);
+    context->states->Add(std::make_unique<MainMenu>(context));
 }
 
 Game::~Game()
@@ -21,7 +21,7 @@ void Game::Run()
     sf::Clock clock;
     sf::Time timeSinceLastFrame = sf::Time::Zero;
 
-    while (m_context->m_window->isOpen())
+    while (context->window->isOpen())
     {
         timeSinceLastFrame += clock.restart();
 
@@ -29,10 +29,10 @@ void Game::Run()
         {
             timeSinceLastFrame -= TIME_PER_FRAME;
 
-            m_context->m_states->ProcessStateChange();
-            m_context->m_states->GetCurrent()->ProcessInput();
-            m_context->m_states->GetCurrent()->Update(TIME_PER_FRAME);
-            m_context->m_states->GetCurrent()->Draw();
+            context->states->ProcessStateChange();
+            context->states->GetCurrent()->ProcessInput();
+            context->states->GetCurrent()->Update(TIME_PER_FRAME);
+            context->states->GetCurrent()->Draw();
         }
     }
 }

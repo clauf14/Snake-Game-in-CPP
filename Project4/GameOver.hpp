@@ -10,7 +10,7 @@
 class GameOver : public Engine::State
 {
 public:
-    GameOver(std::shared_ptr<Context>& context);
+    GameOver(std::shared_ptr<GameContext>& context);
     ~GameOver();
 
     void Init() override;
@@ -19,14 +19,14 @@ public:
     void Draw() override;
 
 private:
-    std::shared_ptr<Context> m_context;
-    sf::Text m_gameOverTitle;
-    sf::Text m_retryButton;
-    sf::Text m_exitButton;
+    std::shared_ptr<GameContext> context;
+    sf::Text gameOverTitle;
+    sf::Text retryButton;
+    sf::Text exitButton;
 
-    bool m_isRetryButtonSelected;
-    bool m_isRetryButtonPressed;
+    bool isRetryButtonSelected;
+    bool isRetryButtonPressed;
 
-    bool m_isExitButtonSelected;
-    bool m_isExitButtonPressed;
+    bool isExitButtonSelected;
+    bool isExitButtonPressed;
 };

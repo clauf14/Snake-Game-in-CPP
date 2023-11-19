@@ -13,20 +13,21 @@ enum AssetID
     GRASS,
     FOOD,
     WALL,
-    SNAKE
+    SNAKE,
+    SNAKE_IMAGE
 };
 
-struct Context
+struct GameContext
 {
-    std::unique_ptr<Engine::AssetMan> m_assets;
-    std::unique_ptr<Engine::StateMan> m_states;
-    std::unique_ptr<sf::RenderWindow> m_window;
+    std::unique_ptr<Engine::AssetMan> assets;
+    std::unique_ptr<Engine::StateMan> states;
+    std::unique_ptr<sf::RenderWindow> window;
 
-    Context()
+    GameContext()
     {
-        m_assets = std::make_unique<Engine::AssetMan>();
-        m_states = std::make_unique<Engine::StateMan>();
-        m_window = std::make_unique<sf::RenderWindow>();
+        assets = std::make_unique<Engine::AssetMan>();
+        states = std::make_unique<Engine::StateMan>();
+        window = std::make_unique<sf::RenderWindow>();
     }
 };
 
@@ -39,6 +40,6 @@ public:
     void Run();
 
 private:
-    std::shared_ptr<Context> m_context;
+    std::shared_ptr<GameContext> context;
     const sf::Time TIME_PER_FRAME = sf::seconds(1.f / 60.f);
 };

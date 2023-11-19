@@ -10,7 +10,7 @@
 class PauseGame : public Engine::State
 {
 public:
-    PauseGame(std::shared_ptr<Context>& context);
+    PauseGame(std::shared_ptr<GameContext>& context);
     ~PauseGame();
 
     void Init() override;
@@ -19,6 +19,6 @@ public:
     void Draw() override;
 
 private:
-    std::shared_ptr<Context> m_context;
-    sf::Text m_pauseTitle;
+    std::shared_ptr<GameContext> context;
+    sf::Text pauseTitle;
 };

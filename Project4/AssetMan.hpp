@@ -15,17 +15,17 @@ namespace Engine
 	{
 	private:
 
-		map<int, unique_ptr<sf::Texture>> m_textures;
-		map<int, unique_ptr<sf::Font>> m_fonts;
+		map<int, unique_ptr<sf::Texture>> textures;
+		map<int, unique_ptr<sf::Font>> fonts;
 
 	public:
 		AssetMan();
 		~AssetMan();
 
-		void AddTexture(int id, const string& filePath, bool whenRepeated = false);	//Obtine Textura
-		void AddFont(int id, const string& filePath);	//Obtine Fontul
+		void addTexture(int id, const string& filePath, bool whenRepeated = false);	//Obtine Textura
+		void addFont(int id, const string& filePath);	//Obtine Fontul
 
-		const sf::Texture &GetTexture(int id) const;	//Returneaza Textura prin constante
-		const sf::Font &GetFont(int id) const;	//Returneaza Fontul prin constante
+		const sf::Texture &getTexture(int id) const;	//Returneaza Textura prin constante
+		const sf::Font &getFont(int id) const;	//Returneaza Fontul prin constante
 	};
 }

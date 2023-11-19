@@ -4,6 +4,7 @@
 #include <memory>
 
 #include "State.hpp"
+#include <SFML/Graphics/RenderWindow.hpp>
 
 namespace Engine
 {
@@ -19,12 +20,12 @@ namespace Engine
         std::unique_ptr<State>& GetCurrent();
 
     private:
-        std::stack<std::unique_ptr<State>> m_stateStack;
-        std::unique_ptr<State> m_newState;
+        std::stack<std::unique_ptr<State>> stateStack;
+        std::unique_ptr<State> newState;
 
-        bool m_add;
-        bool m_replace;
-        bool m_remove;
+        bool add;
+        bool replace;
+        bool remove;
     };
 
 }

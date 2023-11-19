@@ -2,35 +2,53 @@
 
 #include <memory>
 
-#include <SFML/Graphics/Text.hpp>
+#include <SFML/Graphics.hpp>
 
 #include "State.hpp"
 #include "Game.hpp"
+#include "SnakeColor.cpp"
+
+using namespace sf;
 
 class MainMenu : public Engine::State
 {
 private:
-    std::shared_ptr<Context> m_context;
-    sf::Text m_gameTitle;
-    sf::Text m_playButton;
-    sf::Text m_loadGameButton;
-    sf::Text m_selectColorButton;
-    sf::Text m_exitButton;
+    std::shared_ptr<GameContext> context;
+    Text gameTitle;
+    Text playButton;
+    Text loadGameButton;
+    Text selectColorButton;
+    Text helpButton;
+    Text exitButton;
 
-    bool m_isPlayButtonSelected;
-    bool m_isPlayButtonPressed;
+    RectangleShape background;
+    RectangleShape menuBackground;
+    RectangleShape snakeBackground;
+    SnakeColor snakeColor;;
+    Sprite snakeImageSprite;
 
-    bool m_isLoadGameButtonSelected;
-    bool m_isLoadGameButtonPressed;
+    Font font;
 
-    bool m_isSelectColorButtonSelected;
-    bool m_isSelectColorButtonPressed;
+    bool isPlayButtonSelected;
+    bool isPlayButtonPressed;
 
-    bool m_isExitButtonSelected;
-    bool m_isExitButtonPressed;
+    bool isLoadGameButtonSelected;
+    bool isLoadGameButtonPressed;
+
+    bool isSelectColorButtonSelected;
+    bool isSelectColorButtonPressed;
+
+    bool isHelpButtonSelected;
+    bool isHelpButtonPressed;
+
+    bool isExitButtonSelected;
+    bool isExitButtonPressed;
+
+    void initFonts();
+    void initButtons();
 
 public:
-    MainMenu(std::shared_ptr<Context>& context);
+    MainMenu(std::shared_ptr<GameContext>& context);
     ~MainMenu();
 
     void Init() override;

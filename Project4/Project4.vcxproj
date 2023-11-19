@@ -147,6 +147,7 @@
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="PauseGame.cpp" />
     <ClCompile Include="Snake.cpp" />
+    <ClCompile Include="SnakeColor.cpp" />
     <ClCompile Include="StateMan.cpp" />
   </ItemGroup>
   <ItemGroup>

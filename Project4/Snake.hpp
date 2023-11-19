@@ -23,7 +23,7 @@ public:
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
 private:
-    std::list<sf::Sprite> m_body;
-    std::list<sf::Sprite>::iterator m_head;
-    std::list<sf::Sprite>::iterator m_tail;
+    std::list<sf::Sprite> body;
+    std::list<sf::Sprite>::iterator head;
+    std::list<sf::Sprite>::iterator tail;
 };

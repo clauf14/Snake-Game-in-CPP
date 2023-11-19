@@ -13,7 +13,7 @@
 class GamePlay : public Engine::State
 {
 public:
-    GamePlay(std::shared_ptr<Context>& context);
+    GamePlay(std::shared_ptr<GameContext>& context);
     ~GamePlay();
 
     void Init() override;
@@ -24,17 +24,17 @@ public:
     void Start() override;
 
 private:
-    std::shared_ptr<Context> m_context;
-    sf::Sprite m_grass;
-    sf::Sprite m_food;
-    std::array<sf::Sprite, 4> m_walls;
-    Snake m_snake;
+    std::shared_ptr<GameContext> context;
+    sf::Sprite grass;
+    sf::Sprite food;
+    std::array<sf::Sprite, 4> walls;
+    Snake snake;
 
-    sf::Text m_scoreText;
-    int m_score;
+    sf::Text scoreText;
+    int score;
 
-    sf::Vector2f m_snakeDirection;
-    sf::Time m_elapsedTime;
+    sf::Vector2f snakeDirection;
+    sf::Time elapsedTime;
 
-    bool m_isPaused;
+    bool isPaused;
 };

@@ -8,12 +8,12 @@
 #include <time.h>
 #include <random>
 
-GamePlay::GamePlay(std::shared_ptr<Context>& context)
-    : m_context(context),
-    m_score(0),
-    m_snakeDirection({ 16.f, 0.f }),
-    m_elapsedTime(sf::Time::Zero),
-    m_isPaused(false)
+GamePlay::GamePlay(std::shared_ptr<GameContext>& context)
+    : context(context),
+    score(0),
+    snakeDirection({ 16.f, 0.f }),
+    elapsedTime(sf::Time::Zero),
+    isPaused(false)
 {
     srand(time(nullptr));
 }
@@ -24,50 +24,50 @@ GamePlay::~GamePlay()
 
 void GamePlay::Init()
 {
-    m_context->m_assets->AddTexture(GRASS, "grass-minecraft.jpg", true);
-    m_context->m_assets->AddTexture(FOOD, "food.png");
-    m_context->m_assets->AddTexture(WALL, "wall2.png", true);
-    m_context->m_assets->AddTexture(SNAKE, "snake.png");
+    context->assets->addTexture(GRASS, "assets/textures/grass-minecraft.jpg", true);
+    context->assets->addTexture(FOOD, "assets/textures/food.png");
+    context->assets->addTexture(WALL, "assets/textures/wall2.png", true);
+    context->assets->addTexture(SNAKE, "assets/textures/purple-snake.png");
 
-    m_grass.setTexture(m_context->m_assets->GetTexture(GRASS));
-    m_grass.setTextureRect(m_context->m_window->getViewport(m_context->m_window->getDefaultView()));
+    grass.setTexture(context->assets->getTexture(GRASS));
+    grass.setTextureRect(context->window->getViewport(context->window->getDefaultView()));
 
-    for (auto& wall : m_walls)
+    for (auto& wall : walls)
     {
-        wall.setTexture(m_context->m_assets->GetTexture(WALL));
+        wall.setTexture(context->assets->getTexture(WALL));
     }
 
-    m_walls[0].setTextureRect({ 0, 0, (int)m_context->m_window->getSize().x, 16 });
-    m_walls[1].setTextureRect({ 0, 0, (int)m_context->m_window->getSize().x, 16 });
-    m_walls[1].setPosition(0, m_context->m_window->getSize().y - 16);
+    walls[0].setTextureRect({ 0, 0, (int)context->window->getSize().x, 16 });
+    walls[1].setTextureRect({ 0, 0, (int)context->window->getSize().x, 16 });
+    walls[1].setPosition(0, context->window->getSize().y - 16);
 
-    m_walls[2].setTextureRect({ 0, 0, 16, (int)m_context->m_window->getSize().y });
-    m_walls[3].setTextureRect({ 0, 0, 16, (int)m_context->m_window->getSize().y });
-    m_walls[3].setPosition(m_context->m_window->getSize().x - 16, 0);
+    walls[2].setTextureRect({ 0, 0, 16, (int)context->window->getSize().y });
+    walls[3].setTextureRect({ 0, 0, 16, (int)context->window->getSize().y });
+    walls[3].setPosition(context->window->getSize().x - 16, 0);
 
-    m_food.setTexture(m_context->m_assets->GetTexture(FOOD));
-    m_food.setPosition(m_context->m_window->getSize().x / 2, m_context->m_window->getSize().y / 2);
+    food.setTexture(context->assets->getTexture(FOOD));
+    food.setPosition(context->window->getSize().x / 2, context->window->getSize().y / 2);
 
-    m_snake.Init(m_context->m_assets->GetTexture(SNAKE));
+    snake.Init(context->assets->getTexture(SNAKE));
 
-    m_scoreText.setFont(m_context->m_assets->GetFont(MAIN_FONT));
-    m_scoreText.setString("Score : " + std::to_string(m_score));
-    m_scoreText.setPosition(sf::Vector2f(20.f,20.f));
-    m_scoreText.setCharacterSize(18);
+    scoreText.setFont(context->assets->getFont(MAIN_FONT));
+    scoreText.setString("Score : " + std::to_string(score));
+    scoreText.setPosition(sf::Vector2f(20.f,20.f));
+    scoreText.setCharacterSize(18);
 }
 
 void GamePlay::ProcessInput()
 {
     sf::Event event;
-    while (m_context->m_window->pollEvent(event))
+    while (context->window->pollEvent(event))
     {
         if (event.type == sf::Event::Closed)
         {
-            m_context->m_window->close();
+            context->window->close();
         }
         else if (event.type == sf::Event::KeyPressed)
         {
-            sf::Vector2f newDirection = m_snakeDirection;
+            sf::Vector2f newDirection = snakeDirection;
             switch (event.key.code)
             {
             case sf::Keyboard::Up:
@@ -83,17 +83,17 @@ void GamePlay::ProcessInput()
                 newDirection = { 16.f, 0.f };
                 break;
             case sf::Keyboard::Escape:
-                m_context->m_states->Add(std::make_unique<PauseGame>(m_context));
+                context->states->Add(std::make_unique<PauseGame>(context));
                 break;
 
             default:
                 break;
             }
 
-            if (std::abs(m_snakeDirection.x) != std::abs(newDirection.x) ||
-                std::abs(m_snakeDirection.y) != std::abs(newDirection.y))
+            if (std::abs(snakeDirection.x) != std::abs(newDirection.x) ||
+                std::abs(snakeDirection.y) != std::abs(newDirection.y))
             {
-                m_snakeDirection = newDirection;
+                snakeDirection = newDirection;
             }
         }
     }
@@ -101,75 +101,75 @@ void GamePlay::ProcessInput()
 
 void GamePlay::Update(const sf::Time& deltaTime)
 {
-    if (!m_isPaused)
+    if (!isPaused)
     {
-        m_elapsedTime += deltaTime;
+        elapsedTime += deltaTime;
 
-        if (m_elapsedTime.asSeconds() > 0.1)
+        if (elapsedTime.asSeconds() > 0.1)
         {
-            for (auto& wall : m_walls)
+            for (auto& wall : walls)
             {
-                if (m_snake.IsOn(wall))
+                if (snake.IsOn(wall))
                 {
-                    m_context->m_states->Add(std::make_unique<GameOver>(m_context), true);
+                    context->states->Add(std::make_unique<GameOver>(context), true);
                     break;
                 }
             }
 
-            if (m_snake.IsOn(m_food))
+            if (snake.IsOn(food))
             {
-                m_snake.Grow(m_snakeDirection);
+                snake.Grow(snakeDirection);
 
                 std::random_device rd;
                 std::mt19937 gen(rd());
 
-                std::uniform_int_distribution<int> xDist(16, m_context->m_window->getSize().x - 2 * 16);
-                std::uniform_int_distribution<int> yDist(16, m_context->m_window->getSize().y - 2 * 16);
+                std::uniform_int_distribution<int> xDist(16, context->window->getSize().x - 2 * 16);
+                std::uniform_int_distribution<int> yDist(16, context->window->getSize().y - 2 * 16);
 
                 int x = xDist(gen);
                 int y = yDist(gen);
                   
-                m_food.setPosition(x, y);
-                m_score += 1;
-                m_scoreText.setString("Score : " + std::to_string(m_score));
+                food.setPosition(x, y);
+                score += 1;
+                scoreText.setString("Score : " + std::to_string(score));
             }
             else
             {
-                m_snake.Move(m_snakeDirection);
+                snake.Move(snakeDirection);
             }
 
-            if (m_snake.IsSelfIntersecting())
+            if (snake.IsSelfIntersecting())
             {
-                m_context->m_states->Add(std::make_unique<GameOver>(m_context), true);
+                context->states->Add(std::make_unique<GameOver>(context), true);
             }
 
-            m_elapsedTime = sf::Time::Zero;
+            elapsedTime = sf::Time::Zero;
         }
     }
 }
 
 void GamePlay::Draw()
 {
-    m_context->m_window->clear();
-    m_context->m_window->draw(m_grass);
+    context->window->clear();
+    context->window->draw(grass);
 
-    for (auto& wall : m_walls)
+    for (auto& wall : walls)
     {
-        m_context->m_window->draw(wall);
+        context->window->draw(wall);
     }
-    m_context->m_window->draw(m_food);
-    m_context->m_window->draw(m_snake);
-    m_context->m_window->draw(m_scoreText);
+    context->window->draw(food);
+    context->window->draw(snake);
+    context->window->draw(scoreText);
 
-    m_context->m_window->display();
+    context->window->display();
 }
 
 void GamePlay::Pause()
 {
-    m_isPaused = true;
+    isPaused = true;
 }
 
 void GamePlay::Start()
 {
-    m_isPaused = false;
+    isPaused = false;
 }
