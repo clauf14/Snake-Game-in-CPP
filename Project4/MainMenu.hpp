@@ -7,6 +7,10 @@
 #include "State.hpp"
 #include "Game.hpp"
 #include "SnakeColor.cpp"
+#include "HelpState.h"
+#include "NewGameState.h"
+#include "LoadGameState.h"
+#include "SelectColorState.h"
 
 using namespace sf;
 
@@ -43,9 +47,6 @@ private:
 
     bool isExitButtonSelected;
     bool isExitButtonPressed;
-
-    void initFonts();
-    void initButtons();
 
 public:
     MainMenu(std::shared_ptr<GameContext>& context);

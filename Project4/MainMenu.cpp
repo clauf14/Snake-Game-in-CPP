@@ -254,12 +254,25 @@ void MainMenu::Update(const sf::Time& deltaTime)
 
     if (isPlayButtonPressed)
     {
-        context->states->Add(std::make_unique<GamePlay>(context), true);
+        context->states->Add(std::make_unique<NewGameState>(context), true);
+    }
+    else if (isHelpButtonPressed) 
+    {
+        context->states->Add(std::make_unique<HelpState>(context), true);
+    }
+    else if (isLoadGameButtonPressed)
+    {
+        context->states->Add(std::make_unique<LoadGameState>(context), true);
+    }
+    else if (isSelectColorButtonPressed)
+    {
+        context->states->Add(std::make_unique<SelectColorState>(context), true);
     }
     else if (isExitButtonPressed)
     {
         context->window->close();
     }
+    
 }
 
 void MainMenu::Draw()

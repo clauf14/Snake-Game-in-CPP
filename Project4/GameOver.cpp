@@ -24,6 +24,7 @@ void GameOver::Init()
         gameOverTitle.getLocalBounds().height / 2);
     gameOverTitle.setPosition(context->window->getSize().x / 2,
         context->window->getSize().y / 2 - 150.f);
+    gameOverTitle.setCharacterSize(50);
 
     // Play Button
     retryButton.setFont(context->assets->getFont(MAIN_FONT));
@@ -32,7 +33,7 @@ void GameOver::Init()
         retryButton.getLocalBounds().height / 2);
     retryButton.setPosition(context->window->getSize().x / 2,
         context->window->getSize().y / 2 - 25.f);
-    retryButton.setCharacterSize(20);
+    retryButton.setCharacterSize(30);
 
     // Exit Button
     exitButton.setFont(context->assets->getFont(MAIN_FONT));
@@ -41,7 +42,7 @@ void GameOver::Init()
         exitButton.getLocalBounds().height / 2);
     exitButton.setPosition(context->window->getSize().x / 2 + 35.f,
         context->window->getSize().y / 2 + 25.f);
-    exitButton.setCharacterSize(20);
+    exitButton.setCharacterSize(30);
 }
 
 void GameOver::ProcessInput()

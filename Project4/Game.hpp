@@ -14,7 +14,8 @@ enum AssetID
     FOOD,
     WALL,
     SNAKE,
-    SNAKE_IMAGE
+    SNAKE_IMAGE,
+    SNAKE_HELP_IMAGE
 };
 
 struct GameContext

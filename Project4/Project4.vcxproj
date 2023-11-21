@@ -143,9 +143,13 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameOver.cpp" />
     <ClCompile Include="GamePlay.cpp" />
+    <ClCompile Include="HelpState.cpp" />
+    <ClCompile Include="LoadGameState.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
+    <ClCompile Include="NewGameState.cpp" />
     <ClCompile Include="PauseGame.cpp" />
+    <ClCompile Include="SelectColorState.cpp" />
     <ClCompile Include="Snake.cpp" />
     <ClCompile Include="SnakeColor.cpp" />
     <ClCompile Include="StateMan.cpp" />
@@ -155,8 +159,12 @@
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="GameOver.hpp" />
     <ClInclude Include="GamePlay.hpp" />
+    <ClInclude Include="HelpState.h" />
+    <ClInclude Include="LoadGameState.h" />
     <ClInclude Include="MainMenu.hpp" />
+    <ClInclude Include="NewGameState.h" />
     <ClInclude Include="PauseGame.hpp" />
+    <ClInclude Include="SelectColorState.h" />
     <ClInclude Include="Snake.hpp" />
     <ClInclude Include="State.hpp" />
     <ClInclude Include="StateMan.hpp" />

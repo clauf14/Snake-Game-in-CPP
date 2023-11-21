@@ -45,6 +45,18 @@
     <ClCompile Include="StateMan.cpp">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="HelpState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NewGameState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadGameState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectColorState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="State.hpp">
@@ -72,6 +84,18 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="PauseGame.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HelpState.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NewGameState.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadGameState.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectColorState.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
