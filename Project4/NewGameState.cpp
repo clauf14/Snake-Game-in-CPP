@@ -1,3 +1,5 @@
+﻿#include <fstream>
+
 #include "NewGameState.h"
 
 #include <SFML/Window/Event.hpp>
@@ -6,7 +8,7 @@ NewGameState::NewGameState(std::shared_ptr<GameContext>& context)
     : context(context),isPeacefulButtonSelected(true),
     isPeacefulButtonPressed(false),
     isExitButtonSelected(false),
-    isExitButtonPressed(false)
+    isExitButtonPressed(false), textBox(15, Color::Magenta, true)
 {
 }
 
@@ -14,9 +16,29 @@ NewGameState::~NewGameState()
 {
 }
 
+void NewGameState::saveNameToFile(const string& name, const string& fileName)
+{
+    ofstream file(fileName, ios::app);
+
+    if (file.is_open())
+    {
+        file << name << endl;
+        file.close();
+        cout << "Name saved to file: " << name << endl;
+    }
+    else
+    {
+        cerr << "Unable to open file for writing: " << name << endl;
+    }
+}
 
 void NewGameState::Init()
 {
+    //TextBox
+    textBoxFont.loadFromFile("assets/fonts/arial.ttf");
+    textBox.setFont(textBoxFont);
+    textBox.setPosition({ 100, 100 });
+    textBox.setLimit(true, 100);
 
     this->background.setSize(Vector2f(1280, 720));
     this->background.setFillColor(Color::White);
@@ -52,6 +74,26 @@ void NewGameState::ProcessInput()
         {
             context->window->close();
         }
+
+        //TextBox
+       if (event.type == sf::Event::TextEntered)
+       {
+           textBox.typedOn(event);
+       }
+
+
+       //Upload text from TextBox in file
+       if (event.type == sf::Event::MouseButtonPressed)
+       {
+           sf::Vector2i mousePos = sf::Mouse::getPosition(*(context->window));
+           sf::Vector2f mousePosF(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
+
+           if (peacefulButton.getGlobalBounds().contains(mousePosF))
+           {
+               saveNameToFile(textBox.getText(), "assets/scores/score.txt");
+           }
+       } 
+
         else if (event.type == sf::Event::KeyPressed)
         {
             switch (event.key.code)
@@ -127,7 +169,8 @@ void NewGameState::Update(const sf::Time& deltaTime)
 
     if (isPeacefulButtonPressed)
     {
-        context->states->Add(std::make_unique<GamePlay>(context), true);
+       context->states->Add(std::make_unique<GamePlay>(context), true);
+       saveNameToFile(textBox.getText(), "assets/scores/score.txt");
     }
 
     if (isExitButtonPressed)
@@ -142,5 +185,9 @@ void NewGameState::Draw()
     context->window->draw(this->snakeImage);
     context->window->draw(peacefulButton);
     context->window->draw(exitButton);
+
+    //TextBox
+    textBox.drawTo(*context->window);
+
     context->window->display();
 }

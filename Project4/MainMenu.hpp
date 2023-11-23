@@ -11,6 +11,7 @@
 #include "NewGameState.h"
 #include "LoadGameState.h"
 #include "SelectColorState.h"
+#include "GamePlay.hpp"
 
 using namespace sf;
 

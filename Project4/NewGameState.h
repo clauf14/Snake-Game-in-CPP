@@ -3,6 +3,8 @@
 #include "MainMenu.hpp"
 #include "GamePlay.hpp"
 
+#include "TextBox.cpp"
+
 using namespace sf;
 
 class NewGameState : public Engine::State
@@ -14,6 +16,10 @@ private:
 
     RectangleShape background;
     Sprite snakeImage;
+
+    //TextBox
+    TextBox textBox;
+    Font textBoxFont;
 
     Font font;
 
@@ -30,6 +36,9 @@ private:
 public:
     NewGameState(std::shared_ptr<GameContext>& context);
     ~NewGameState();
+
+    //Text from TextBox in file
+    void saveNameToFile(const std::string& name, const std::string& fileName);
 
     void Init() override;
     void ProcessInput() override;

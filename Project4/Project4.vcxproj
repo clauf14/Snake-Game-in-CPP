@@ -152,6 +152,7 @@
     <ClCompile Include="SelectColorState.cpp" />
     <ClCompile Include="Snake.cpp" />
     <ClCompile Include="SnakeColor.cpp" />
+    <ClCompile Include="TextBox.cpp" />
     <ClCompile Include="StateMan.cpp" />
   </ItemGroup>
   <ItemGroup>
