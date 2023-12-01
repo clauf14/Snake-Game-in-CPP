@@ -24,6 +24,20 @@ GamePlay::~GamePlay()
 
 void GamePlay::Init()
 {
+
+    if (!eatBuffer.loadFromFile("assets/sounds/eat.wav"))
+    {
+        return;
+    }
+
+    if (!gameOverBuffer.loadFromFile("assets/sounds/gameover.wav"))
+    {
+        return;
+    }
+
+    eatSound.setBuffer(eatBuffer);
+    gameOverSound.setBuffer(gameOverBuffer);
+
     context->assets->addTexture(GRASS, "assets/textures/grass-minecraft.jpg", true);
     context->assets->addTexture(FOOD, "assets/textures/food.png");
     context->assets->addTexture(WALL, "assets/textures/wall2.png", true);
@@ -111,6 +125,7 @@ void GamePlay::Update(const sf::Time& deltaTime)
             {
                 if (snake.IsOn(wall))
                 {
+                    gameOverSound.play();
                     context->states->Add(std::make_unique<GameOver>(context), true);
                     break;
                 }
@@ -119,6 +134,7 @@ void GamePlay::Update(const sf::Time& deltaTime)
             if (snake.IsOn(food))
             {
                 snake.Grow(snakeDirection);
+                eatSound.play();
 
                 std::random_device rd;
                 std::mt19937 gen(rd());
@@ -140,6 +156,7 @@ void GamePlay::Update(const sf::Time& deltaTime)
 
             if (snake.IsSelfIntersecting())
             {
+                gameOverSound.play();
                 context->states->Add(std::make_unique<GameOver>(context), true);
             }
 

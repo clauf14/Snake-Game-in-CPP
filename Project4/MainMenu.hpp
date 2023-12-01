@@ -3,6 +3,7 @@
 #include <memory>
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio/Music.hpp>
 
 #include "State.hpp"
 #include "Game.hpp"
@@ -25,6 +26,8 @@ private:
     Text selectColorButton;
     Text helpButton;
     Text exitButton;
+
+    sf::Music music;
 
     RectangleShape background;
     RectangleShape menuBackground;

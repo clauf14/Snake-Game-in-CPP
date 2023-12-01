@@ -19,7 +19,7 @@ void PauseGame::Init()
     pauseTitle.setOrigin(pauseTitle.getLocalBounds().width / 2,
         pauseTitle.getLocalBounds().height / 2);
     pauseTitle.setPosition(context->window->getSize().x / 2,
-        context->window->getSize().y / 2);
+        context->window->getSize().y / 2 - 100.f);
 }
 
 void PauseGame::ProcessInput()

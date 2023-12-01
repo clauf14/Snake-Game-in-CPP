@@ -8,7 +8,7 @@ NewGameState::NewGameState(std::shared_ptr<GameContext>& context)
     : context(context),isPeacefulButtonSelected(true),
     isPeacefulButtonPressed(false),
     isExitButtonSelected(false),
-    isExitButtonPressed(false), textBox(15, Color::Magenta, true)
+    isExitButtonPressed(false), textBox(30, Color::White, true)
 {
 }
 
@@ -35,10 +35,10 @@ void NewGameState::saveNameToFile(const string& name, const string& fileName)
 void NewGameState::Init()
 {
     //TextBox
-    textBoxFont.loadFromFile("assets/fonts/arial.ttf");
+    textBoxFont.loadFromFile("assets/fonts/Pacifico-Regular.ttf");
     textBox.setFont(textBoxFont);
-    textBox.setPosition({ 100, 100 });
-    textBox.setLimit(true, 100);
+    textBox.setPosition({ 250, 250 });
+    textBox.setLimit(true, 30);
 
     this->background.setSize(Vector2f(1280, 720));
     this->background.setFillColor(Color::White);

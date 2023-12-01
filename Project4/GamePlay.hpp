@@ -5,6 +5,8 @@
 
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Text.hpp>
+#include <SFML/Audio/Sound.hpp>
+#include <SFML/Audio/SoundBuffer.hpp>
 
 #include "Game.hpp"
 #include "State.hpp"
@@ -29,6 +31,11 @@ private:
     sf::Sprite food;
     std::array<sf::Sprite, 4> walls;
     Snake snake;
+
+    sf::Sound eatSound;
+    sf::Sound gameOverSound;
+    sf::SoundBuffer eatBuffer;
+    sf::SoundBuffer gameOverBuffer;
 
     sf::Text scoreText;
     int score;
