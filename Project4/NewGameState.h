@@ -21,6 +21,8 @@ private:
     TextBox textBox;
     Font textBoxFont;
 
+    sf::Color blueColor;
+
     Font font;
 
     bool isExitButtonSelected;

@@ -17,12 +17,14 @@ GameOver::~GameOver()
 
 void GameOver::Init()
 {
+
+    blueColor = sf::Color(102,178,255);
     // Title
     gameOverTitle.setFont(context->assets->getFont(MAIN_FONT));
     gameOverTitle.setString("Game Over");
     gameOverTitle.setOrigin(gameOverTitle.getLocalBounds().width / 2,
         gameOverTitle.getLocalBounds().height / 2);
-    gameOverTitle.setPosition(context->window->getSize().x / 2,
+    gameOverTitle.setPosition(context->window->getSize().x / 2 - 70.f,
         context->window->getSize().y / 2 - 150.f);
     gameOverTitle.setCharacterSize(50);
 
@@ -31,7 +33,7 @@ void GameOver::Init()
     retryButton.setString("Retry");
     retryButton.setOrigin(retryButton.getLocalBounds().width / 2,
         retryButton.getLocalBounds().height / 2);
-    retryButton.setPosition(context->window->getSize().x / 2,
+    retryButton.setPosition(context->window->getSize().x / 2 - 30.f,
         context->window->getSize().y / 2 - 25.f);
     retryButton.setCharacterSize(30);
 
@@ -40,7 +42,7 @@ void GameOver::Init()
     exitButton.setString("Exit To Main Menu");
     exitButton.setOrigin(exitButton.getLocalBounds().width / 2,
         exitButton.getLocalBounds().height / 2);
-    exitButton.setPosition(context->window->getSize().x / 2 + 35.f,
+    exitButton.setPosition(context->window->getSize().x / 2 - 10,
         context->window->getSize().y / 2 + 25.f);
     exitButton.setCharacterSize(30);
 }
@@ -126,7 +128,7 @@ void GameOver::Update(const sf::Time& deltaTime)
 
 void GameOver::Draw()
 {
-    context->window->clear(sf::Color::Blue);
+    context->window->clear(blueColor);
     context->window->draw(gameOverTitle);
     context->window->draw(retryButton);
     context->window->draw(exitButton);

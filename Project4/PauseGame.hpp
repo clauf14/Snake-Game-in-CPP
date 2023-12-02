@@ -6,6 +6,7 @@
 
 #include "State.hpp"
 #include "Game.hpp"
+#include "LoadGameState.h"
 
 class PauseGame : public Engine::State
 {
@@ -21,4 +22,12 @@ public:
 private:
     std::shared_ptr<GameContext> context;
     sf::Text pauseTitle;
+    sf::Text saveButton;
+    sf::Text helpButton;
+
+    bool isHelpButtonPressed;
+    bool isHelpButtonSelected;
+
+    bool isSaveButtonPressed;
+    bool isSaveButtonSelected;
 };

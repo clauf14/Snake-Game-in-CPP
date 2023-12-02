@@ -24,6 +24,8 @@ void MainMenu::Init()
     music.play();
     music.setVolume(20);
 
+    blueColor = sf::Color(102, 178, 255);
+
     this->background.setSize(Vector2f(1280, 720));
     this->background.setFillColor(Color::White);
 
@@ -33,7 +35,7 @@ void MainMenu::Init()
     snakeImageSprite.setPosition(550, 20);
 
     menuBackground.setSize(sf::Vector2f(500, 720));
-    menuBackground.setFillColor(sf::Color::Blue);
+    menuBackground.setFillColor(blueColor);
 
     snakeBackground.setSize(sf::Vector2f(670, 670));
     snakeBackground.setFillColor(snakeColor.getColor());
@@ -281,7 +283,6 @@ void MainMenu::Update(const sf::Time& deltaTime)
 
 void MainMenu::Draw()
 {
-    context->window->clear(sf::Color::Blue);
     context->window->draw(this->background);
     context->window->draw(this->menuBackground);
     context->window->draw(this->snakeBackground);

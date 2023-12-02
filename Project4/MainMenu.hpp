@@ -29,6 +29,8 @@ private:
 
     sf::Music music;
 
+    sf::Color blueColor;
+
     RectangleShape background;
     RectangleShape menuBackground;
     RectangleShape snakeBackground;

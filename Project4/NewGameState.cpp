@@ -40,6 +40,8 @@ void NewGameState::Init()
     textBox.setPosition({ 250, 250 });
     textBox.setLimit(true, 30);
 
+    blueColor = sf::Color(102, 178, 255);
+
     this->background.setSize(Vector2f(1280, 720));
     this->background.setFillColor(Color::White);
 
@@ -181,7 +183,7 @@ void NewGameState::Update(const sf::Time& deltaTime)
 
 void NewGameState::Draw()
 {
-    context->window->clear(sf::Color::Blue);
+    context->window->clear(blueColor);
     context->window->draw(this->snakeImage);
     context->window->draw(peacefulButton);
     context->window->draw(exitButton);

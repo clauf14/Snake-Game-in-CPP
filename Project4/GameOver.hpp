@@ -23,6 +23,7 @@ private:
     sf::Text gameOverTitle;
     sf::Text retryButton;
     sf::Text exitButton;
+    sf::Color blueColor;
 
     bool isRetryButtonSelected;
     bool isRetryButtonPressed;
