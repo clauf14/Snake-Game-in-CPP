@@ -24,6 +24,10 @@ private:
     sf::Text pauseTitle;
     sf::Text saveButton;
     sf::Text helpButton;
+    Text exitButton;
+
+    bool isExitButtonSelected;
+    bool isExitButtonPressed;
 
     bool isHelpButtonPressed;
     bool isHelpButtonSelected;

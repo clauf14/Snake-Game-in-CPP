@@ -11,10 +11,10 @@
 class Snake : public sf::Drawable
 {
 public:
-    Snake();
+    Snake(int snakeLength = 4);
     ~Snake();
 
-    void Init(const sf::Texture& texture);
+    void Init(const sf::Texture& texture, float posX = 16.f, float posY = 16.f);
     void Move(const sf::Vector2f& direction);
     bool IsOn(const sf::Sprite& other) const;
     void Grow(const sf::Vector2f& direction);

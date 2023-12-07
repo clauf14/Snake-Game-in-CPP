@@ -1,6 +1,7 @@
 #include "Snake.hpp"
+#include <iostream>
 
-Snake::Snake() : body(std::list<sf::Sprite>(4))
+Snake::Snake(int snakeLength) : body(std::list<sf::Sprite>(snakeLength))
 {
     head = --body.end();
     tail = body.begin();
@@ -10,13 +11,13 @@ Snake::~Snake()
 {
 }
 
-void Snake::Init(const sf::Texture& texture)
+void Snake::Init(const sf::Texture& texture, float posX, float posY)
 {
-    float x = 16.f;
+    float x = posX;
     for (auto& piece : body)
     {
         piece.setTexture(texture);
-        piece.setPosition({ x, 16.f });
+        piece.setPosition({ x, posY });
         x += 16.f;
     }
 }
@@ -24,6 +25,7 @@ void Snake::Init(const sf::Texture& texture)
 void Snake::Move(const sf::Vector2f& direction)
 {
     tail->setPosition(head->getPosition() + direction);
+    std::cout << head->getPosition().x << " " <<direction.x << " " << head->getPosition().y << " " << direction.y << std::endl;
     head = tail;
     ++tail;
 

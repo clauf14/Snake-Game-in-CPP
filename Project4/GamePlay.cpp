@@ -13,7 +13,8 @@ GamePlay::GamePlay(std::shared_ptr<GameContext>& context)
     score(0),
     snakeDirection({ 16.f, 0.f }),
     elapsedTime(sf::Time::Zero),
-    isPaused(false)
+    isPaused(false),
+    snake(4)
 {
     srand(time(nullptr));
 }
@@ -119,7 +120,7 @@ void GamePlay::Update(const sf::Time& deltaTime)
     {
         elapsedTime += deltaTime;
 
-        if (elapsedTime.asSeconds() > 0.1)
+        if (elapsedTime.asSeconds() > 1)
         {
             for (auto& wall : walls)
             {

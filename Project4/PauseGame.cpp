@@ -30,6 +30,15 @@ void PauseGame::Init()
     saveButton.setPosition(context->window->getSize().x / 2,
         context->window->getSize().y / 2);
     saveButton.setCharacterSize(30);
+
+    // Exit Button
+    exitButton.setFont(context->assets->getFont(MAIN_FONT));
+    exitButton.setString("Exit");
+    exitButton.setOrigin(exitButton.getLocalBounds().width / 2,
+        exitButton.getLocalBounds().height / 2);
+    exitButton.setPosition(context->window->getSize().x / 2,
+        context->window->getSize().y / 2 + 100.f);
+    exitButton.setCharacterSize(30);
 }
 
 void PauseGame::ProcessInput()
@@ -50,13 +59,46 @@ void PauseGame::ProcessInput()
                 context->states->PopCurrent();
                 break;
             }
+            case sf::Keyboard::Down:
+            {
+                if (isSaveButtonSelected)
+                {
+                    isSaveButtonSelected = false;
+                    isExitButtonSelected = true;
+                }
+                else
+                {
+                    isExitButtonSelected = false;
+                    isSaveButtonSelected = true;
+                }
+                break;
+            }
+            case sf::Keyboard::Up:
+            {
+                if (isSaveButtonSelected)
+                {
+                    isSaveButtonSelected = false;
+                    isExitButtonSelected = true;
+                }
+                else
+                {
+                    isExitButtonSelected = false;
+                    isSaveButtonSelected = true;
+                }
+                break;
+            }
             case sf::Keyboard::Return:
             {
                 isSaveButtonPressed = false;
+                isExitButtonPressed = false;
 
                 if (isSaveButtonSelected)
                 {
                     isSaveButtonPressed = true;
+                }
+                if (isExitButtonSelected)
+                {
+                    isExitButtonPressed = true;
                 }
                 break;
             }
@@ -74,11 +116,21 @@ void PauseGame::Update(const sf::Time& deltaTime)
     if (isSaveButtonSelected)
     {
         saveButton.setFillColor(sf::Color::Black);
+        exitButton.setFillColor(Color::White);
+    }
+    else
+    {
+        saveButton.setFillColor(sf::Color::White);
+        exitButton.setFillColor(Color::Black);
     }
 
     if (isSaveButtonPressed)
     {
         context->states->Add(std::make_unique<LoadGameState>(context), true);
+    }
+    if (isExitButtonPressed)
+    {
+        context->states->Add(std::make_unique<MainMenu>(context), true);
     }
 }
 
@@ -86,5 +138,6 @@ void PauseGame::Draw()
 {
     context->window->draw(pauseTitle);
     context->window->draw(saveButton);
+    context->window->draw(exitButton);
     context->window->display();
 }
