@@ -1,2 +1,12 @@
-﻿  Snake.cpp
-  Project4.vcxproj -> X:\Learning\IALG Anul 2 Sem 1\Programare C++\SnakeGame\x64\Debug\Project4.exe
+﻿  LoadGameState.cpp
+C:\Users\Denis\SnakeGame\Project4\LoadGameState.cpp(32,38): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+C:\Users\Denis\SnakeGame\Project4\LoadGameState.cpp(32,38): warning C4244:         with
+C:\Users\Denis\SnakeGame\Project4\LoadGameState.cpp(32,38): warning C4244:         [
+C:\Users\Denis\SnakeGame\Project4\LoadGameState.cpp(32,38): warning C4244:             T=unsigned int
+C:\Users\Denis\SnakeGame\Project4\LoadGameState.cpp(32,38): warning C4244:         ]
+C:\Users\Denis\SnakeGame\Project4\LoadGameState.cpp(31,61): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+C:\Users\Denis\SnakeGame\Project4\LoadGameState.cpp(31,61): warning C4244:         with
+C:\Users\Denis\SnakeGame\Project4\LoadGameState.cpp(31,61): warning C4244:         [
+C:\Users\Denis\SnakeGame\Project4\LoadGameState.cpp(31,61): warning C4244:             T=unsigned int
+C:\Users\Denis\SnakeGame\Project4\LoadGameState.cpp(31,61): warning C4244:         ]
+  Project4.vcxproj -> C:\Users\Denis\SnakeGame\x64\Debug\Project4.exe

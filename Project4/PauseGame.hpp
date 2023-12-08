@@ -7,7 +7,7 @@
 #include "State.hpp"
 #include "Game.hpp"
 #include "LoadGameState.h"
-
+class GamePlay;
 class PauseGame : public Engine::State
 {
 public:
@@ -20,6 +20,7 @@ public:
     void Draw() override;
 
 private:
+    GamePlay gamePlay;
     std::shared_ptr<GameContext> context;
     sf::Text pauseTitle;
     sf::Text saveButton;

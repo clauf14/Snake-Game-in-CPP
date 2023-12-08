@@ -1,6 +1,8 @@
 #include "GamePlay.hpp"
 #include "GameOver.hpp"
 #include "PauseGame.hpp"
+#include <fstream>
+#include <iostream>
 
 #include <SFML/Window/Event.hpp>
 
@@ -19,13 +21,48 @@ GamePlay::GamePlay(std::shared_ptr<GameContext>& context)
     srand(time(nullptr));
 }
 
+GamePlay::GamePlay() : context(nullptr), score(0), snakeDirection({ 0.f, 0.f }), elapsedTime(sf::Time::Zero), isPaused(false)
+{
+    // Initialize other member variables...
+}
+
+// Set the score
+void GamePlay::setSnakeScore(int newScore) {
+    score = newScore;
+}
+
+// Set the snake direction
+void GamePlay::setSnakeDirection(const sf::Vector2f& newDirection) {
+    snakeDirection = newDirection;
+}
+
 GamePlay::~GamePlay()
 {
 }
 
+void GamePlay::SaveGameState(const std::string& filename) {
+    // Open the file in binary mode for writing
+    std::ofstream file(filename, std::ios::binary);
+
+    if (!file.is_open()) {
+        std::cerr << "Error opening file for saving: " << filename << std::endl;
+        return;
+    }
+
+    // Save relevant game state data directly
+    file << score << '\n';  // Write score on a new line
+
+    // Save snakeDirection components separately on new lines
+    file << snakeDirection.x << '\n';
+    file << snakeDirection.y << '\n';
+
+    // Debugging output
+    std::cout << "Saved Score: " << score << std::endl;
+    std::cout << "Saved Snake Direction: (" << snakeDirection.x << ", " << snakeDirection.y << ")" << std::endl;
+}
+
 void GamePlay::Init()
 {
-
     if (!eatBuffer.loadFromFile("assets/sounds/eat.wav"))
     {
         return;
@@ -67,7 +104,7 @@ void GamePlay::Init()
 
     scoreText.setFont(context->assets->getFont(MAIN_FONT));
     scoreText.setString("Score : " + std::to_string(score));
-    scoreText.setPosition(sf::Vector2f(20.f,20.f));
+    scoreText.setPosition(sf::Vector2f(20.f, 20.f));
     scoreText.setCharacterSize(18);
 }
 
@@ -145,7 +182,7 @@ void GamePlay::Update(const sf::Time& deltaTime)
 
                 int x = xDist(gen);
                 int y = yDist(gen);
-                  
+
                 food.setPosition(x, y);
                 score += 1;
                 scoreText.setString("Score : " + std::to_string(score));

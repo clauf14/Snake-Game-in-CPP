@@ -3,10 +3,14 @@
 #include <SFML/Window/Event.hpp>
 
 PauseGame::PauseGame(std::shared_ptr<GameContext>& context)
-    : context(context),isSaveButtonPressed(false),
-    isSaveButtonSelected(true)
+    : context(context), isSaveButtonPressed(false),
+    isSaveButtonSelected(true),
+    gamePlay(context) // Correctly initialize the GamePlay object
 {
+    // Other constructor code, if needed
 }
+
+
 
 PauseGame::~PauseGame()
 {
@@ -39,6 +43,7 @@ void PauseGame::Init()
     exitButton.setPosition(context->window->getSize().x / 2,
         context->window->getSize().y / 2 + 100.f);
     exitButton.setCharacterSize(30);
+    gamePlay.Init();
 }
 
 void PauseGame::ProcessInput()
@@ -126,13 +131,21 @@ void PauseGame::Update(const sf::Time& deltaTime)
 
     if (isSaveButtonPressed)
     {
-        context->states->Add(std::make_unique<LoadGameState>(context), true);
+        // Save the game state here
+        gamePlay.SaveGameState("assets/savedGameScores/scores.txt");
+
+        // Now, you can either return to the game or go to the main menu
+        // In this example, let's go back to the game
+        context->states->Add(std::make_unique<MainMenu>(context), true);
+        std::cout << "Game saved successfully." << std::endl;
+
     }
     if (isExitButtonPressed)
     {
         context->states->Add(std::make_unique<MainMenu>(context), true);
     }
 }
+
 
 void PauseGame::Draw()
 {

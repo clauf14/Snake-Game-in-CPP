@@ -1,3 +1,4 @@
+// GamePlay.hpp
 #pragma once
 
 #include <memory>
@@ -15,8 +16,15 @@
 class GamePlay : public Engine::State
 {
 public:
+    GamePlay();  // Default constructor
     GamePlay(std::shared_ptr<GameContext>& context);
+    GamePlay(std::shared_ptr<GameContext>& context, int score, float dirX, float dirY);
     ~GamePlay();
+
+    void setSnakeScore(int newScore);
+    void setSnakeDirection(const sf::Vector2f& newDirection);
+    void SaveGameState(const std::string& filename);
+    void LoadGameState(const std::string& filename);
 
     void Init() override;
     void ProcessInput() override;
@@ -26,6 +34,8 @@ public:
     void Start() override;
 
 private:
+    void initialize();  // A common initialization function
+
     std::shared_ptr<GameContext> context;
     sf::Sprite grass;
     sf::Sprite food;
