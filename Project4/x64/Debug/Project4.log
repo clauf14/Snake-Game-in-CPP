@@ -1,12 +1,15 @@
 ﻿  LoadGameState.cpp
-C:\Users\Denis\SnakeGame\Project4\LoadGameState.cpp(32,38): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
-C:\Users\Denis\SnakeGame\Project4\LoadGameState.cpp(32,38): warning C4244:         with
-C:\Users\Denis\SnakeGame\Project4\LoadGameState.cpp(32,38): warning C4244:         [
-C:\Users\Denis\SnakeGame\Project4\LoadGameState.cpp(32,38): warning C4244:             T=unsigned int
-C:\Users\Denis\SnakeGame\Project4\LoadGameState.cpp(32,38): warning C4244:         ]
-C:\Users\Denis\SnakeGame\Project4\LoadGameState.cpp(31,61): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
-C:\Users\Denis\SnakeGame\Project4\LoadGameState.cpp(31,61): warning C4244:         with
-C:\Users\Denis\SnakeGame\Project4\LoadGameState.cpp(31,61): warning C4244:         [
-C:\Users\Denis\SnakeGame\Project4\LoadGameState.cpp(31,61): warning C4244:             T=unsigned int
-C:\Users\Denis\SnakeGame\Project4\LoadGameState.cpp(31,61): warning C4244:         ]
-  Project4.vcxproj -> C:\Users\Denis\SnakeGame\x64\Debug\Project4.exe
+X:\Learning\IALG Anul 2 Sem 1\Programare C++\SnakeGame\Project4\LoadGameState.cpp(25,28): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+X:\Learning\IALG Anul 2 Sem 1\Programare C++\SnakeGame\Project4\LoadGameState.cpp(40,38): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+X:\Learning\IALG Anul 2 Sem 1\Programare C++\SnakeGame\Project4\LoadGameState.cpp(39,61): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.37.32822\include\memory(3477,56): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+X:\Learning\IALG Anul 2 Sem 1\Programare C++\SnakeGame\Project4\LoadGameState.cpp(129,35): message : see reference to function template instantiation 'std::unique_ptr<GamePlay,std::default_delete<GamePlay>> std::make_unique<GamePlay,std::shared_ptr<GameContext>&,float&,float&,float&,float&,float&,0>(std::shared_ptr<GameContext> &,float &,float &,float &,float &,float &)' being compiled
+  Project4.vcxproj -> X:\Learning\IALG Anul 2 Sem 1\Programare C++\SnakeGame\x64\Debug\Project4.exe

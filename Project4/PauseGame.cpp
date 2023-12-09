@@ -4,8 +4,8 @@
 
 PauseGame::PauseGame(std::shared_ptr<GameContext>& context)
     : context(context), isSaveButtonPressed(false),
-    isSaveButtonSelected(true),
-    gamePlay(context) // Correctly initialize the GamePlay object
+    isSaveButtonSelected(true), isExitButtonPressed(false),
+    isExitButtonSelected(false)// Correctly initialize the GamePlay object
 {
     // Other constructor code, if needed
 }
@@ -43,7 +43,6 @@ void PauseGame::Init()
     exitButton.setPosition(context->window->getSize().x / 2,
         context->window->getSize().y / 2 + 100.f);
     exitButton.setCharacterSize(30);
-    gamePlay.Init();
 }
 
 void PauseGame::ProcessInput()
@@ -132,8 +131,6 @@ void PauseGame::Update(const sf::Time& deltaTime)
     if (isSaveButtonPressed)
     {
         // Save the game state here
-        gamePlay.SaveGameState("assets/savedGameScores/scores.txt");
-
         // Now, you can either return to the game or go to the main menu
         // In this example, let's go back to the game
         context->states->Add(std::make_unique<MainMenu>(context), true);

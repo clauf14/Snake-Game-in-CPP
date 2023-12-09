@@ -8,7 +8,7 @@ class GamePlay;
 class LoadGameState : public Engine::State
 {
 private:
-    GamePlay loadedGame;
+    /*GamePlay gamePlay;*/
     std::shared_ptr<GameContext> context;
     Text firstSave;
     Text exitButton;
@@ -37,6 +37,6 @@ public:
     void Draw() override;
 
 private:
-    int ReadSavedScoreFromFile(const std::string& fileName); // New private function
-    void ReadSavedDataFromFile(const std::string& fileName);
+    //int ReadSavedScoreFromFile(const std::string& fileName); // New private function
+    float* ReadSavedDataFromFile(const std::string& fileName);
 };

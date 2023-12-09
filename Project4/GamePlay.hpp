@@ -18,12 +18,12 @@ class GamePlay : public Engine::State
 public:
     GamePlay();  // Default constructor
     GamePlay(std::shared_ptr<GameContext>& context);
-    GamePlay(std::shared_ptr<GameContext>& context, int score, float dirX, float dirY);
+    GamePlay(std::shared_ptr<GameContext>& context, int score, float dirX, float dirY, float posX, float posY);
     ~GamePlay();
 
     void setSnakeScore(int newScore);
     void setSnakeDirection(const sf::Vector2f& newDirection);
-    void SaveGameState(const std::string& filename);
+    void SaveGameState(const std::string& filename, int score, float posX, float posY, float dirX, float dirY);
     void LoadGameState(const std::string& filename);
 
     void Init() override;

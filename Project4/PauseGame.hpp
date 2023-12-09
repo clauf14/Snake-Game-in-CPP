@@ -20,7 +20,7 @@ public:
     void Draw() override;
 
 private:
-    GamePlay gamePlay;
+    /*GamePlay gamePlay;*/
     std::shared_ptr<GameContext> context;
     sf::Text pauseTitle;
     sf::Text saveButton;
