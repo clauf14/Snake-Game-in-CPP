@@ -31,10 +31,6 @@ private:
     bool isPeacefulButtonSelected;
     bool isPeacefulButtonPressed;
 
-
-    void initFonts();
-    void initButtons();
-
 public:
     NewGameState(std::shared_ptr<GameContext>& context);
     ~NewGameState();

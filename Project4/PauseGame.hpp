@@ -7,6 +7,8 @@
 #include "State.hpp"
 #include "Game.hpp"
 #include "LoadGameState.h"
+#include <fstream> // Include for file operations
+
 class GamePlay;
 class PauseGame : public Engine::State
 {
@@ -21,6 +23,7 @@ public:
 
 private:
     /*GamePlay gamePlay;*/
+    string* writeTemporaryDataToFinal(const std::string& fromFile, const std::string& toFile);
     std::shared_ptr<GameContext> context;
     sf::Text pauseTitle;
     sf::Text saveButton;

@@ -1,15 +1,21 @@
 ﻿  LoadGameState.cpp
-X:\Learning\IALG Anul 2 Sem 1\Programare C++\SnakeGame\Project4\LoadGameState.cpp(25,28): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-X:\Learning\IALG Anul 2 Sem 1\Programare C++\SnakeGame\Project4\LoadGameState.cpp(40,38): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+X:\Learning\IALG Anul 2 Sem 1\Programare C++\SnakeGame\Project4\LoadGameState.cpp(26,22): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+X:\Learning\IALG Anul 2 Sem 1\Programare C++\SnakeGame\Project4\LoadGameState.cpp(41,38): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
           ]
-X:\Learning\IALG Anul 2 Sem 1\Programare C++\SnakeGame\Project4\LoadGameState.cpp(39,61): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+X:\Learning\IALG Anul 2 Sem 1\Programare C++\SnakeGame\Project4\LoadGameState.cpp(40,61): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
           ]
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.37.32822\include\memory(3477,56): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-X:\Learning\IALG Anul 2 Sem 1\Programare C++\SnakeGame\Project4\LoadGameState.cpp(129,35): message : see reference to function template instantiation 'std::unique_ptr<GamePlay,std::default_delete<GamePlay>> std::make_unique<GamePlay,std::shared_ptr<GameContext>&,float&,float&,float&,float&,float&,0>(std::shared_ptr<GameContext> &,float &,float &,float &,float &,float &)' being compiled
+X:\Learning\IALG Anul 2 Sem 1\Programare C++\SnakeGame\Project4\LoadGameState.cpp(124,19): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+  MainMenu.cpp
+X:\Learning\IALG Anul 2 Sem 1\Programare C++\SnakeGame\Project4\MainMenu.cpp(62,57): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+  Generating Code...
   Project4.vcxproj -> X:\Learning\IALG Anul 2 Sem 1\Programare C++\SnakeGame\x64\Debug\Project4.exe

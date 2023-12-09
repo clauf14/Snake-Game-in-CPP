@@ -18,18 +18,13 @@ NewGameState::~NewGameState()
 
 void NewGameState::saveNameToFile(const string& name, const string& fileName)
 {
-    ofstream file(fileName, ios::app);
+    ofstream file(fileName, ios::binary);
 
-    if (file.is_open())
-    {
-        file << name << endl;
-        file.close();
-        cout << "Name saved to file: " << name << endl;
+    if (!file.is_open()) {
+        throw std::runtime_error("Error opening file for saving: " + fileName);
     }
-    else
-    {
-        cerr << "Unable to open file for writing: " << name << endl;
-    }
+    
+    file << name;
 }
 
 void NewGameState::Init()
@@ -50,7 +45,7 @@ void NewGameState::Init()
     context->assets->addFont(MAIN_FONT, "assets/fonts/Pacifico-Regular.ttf");
     // Game Info
     peacefulButton.setFont(context->assets->getFont(MAIN_FONT));
-    peacefulButton.setString("Peaceful  :)");
+    peacefulButton.setString("Peaceful");
     peacefulButton.setOrigin(peacefulButton.getLocalBounds().width / 2,
         peacefulButton.getLocalBounds().height / 2);
     peacefulButton.setPosition(context->window->getSize().x / 2, //latime (cu - e in stanga, cu + in dreapta)
@@ -92,7 +87,7 @@ void NewGameState::ProcessInput()
 
            if (peacefulButton.getGlobalBounds().contains(mousePosF))
            {
-               saveNameToFile(textBox.getText(), "assets/scores/score.txt");
+               saveNameToFile(textBox.getText(), "assets/scores/playerName.txt");
            }
        } 
 
@@ -172,7 +167,7 @@ void NewGameState::Update(const sf::Time& deltaTime)
     if (isPeacefulButtonPressed)
     {
        context->states->Add(std::make_unique<GamePlay>(context), true);
-       saveNameToFile(textBox.getText(), "assets/scores/score.txt");
+       saveNameToFile(textBox.getText(), "assets/scores/playerName.txt");
     }
 
     if (isExitButtonPressed)

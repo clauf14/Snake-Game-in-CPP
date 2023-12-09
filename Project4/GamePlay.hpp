@@ -16,7 +16,6 @@
 class GamePlay : public Engine::State
 {
 public:
-    GamePlay();  // Default constructor
     GamePlay(std::shared_ptr<GameContext>& context);
     GamePlay(std::shared_ptr<GameContext>& context, int score, float dirX, float dirY, float posX, float posY);
     ~GamePlay();
@@ -24,7 +23,7 @@ public:
     void setSnakeScore(int newScore);
     void setSnakeDirection(const sf::Vector2f& newDirection);
     void SaveGameState(const std::string& filename, int score, float posX, float posY, float dirX, float dirY);
-    void LoadGameState(const std::string& filename);
+    string ReadPlayerName(const std::string& filename);
 
     void Init() override;
     void ProcessInput() override;
@@ -34,8 +33,6 @@ public:
     void Start() override;
 
 private:
-    void initialize();  // A common initialization function
-
     std::shared_ptr<GameContext> context;
     sf::Sprite grass;
     sf::Sprite food;
@@ -48,6 +45,7 @@ private:
     sf::SoundBuffer gameOverBuffer;
 
     sf::Text scoreText;
+    sf::Text playerName;
     int score;
 
     sf::Vector2f snakeDirection;

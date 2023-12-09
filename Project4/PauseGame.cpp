@@ -5,7 +5,8 @@
 PauseGame::PauseGame(std::shared_ptr<GameContext>& context)
     : context(context), isSaveButtonPressed(false),
     isSaveButtonSelected(true), isExitButtonPressed(false),
-    isExitButtonSelected(false)// Correctly initialize the GamePlay object
+    isExitButtonSelected(false), isHelpButtonPressed(false),
+    isHelpButtonSelected(false)// Correctly initialize the GamePlay object
 {
     // Other constructor code, if needed
 }
@@ -130,17 +131,46 @@ void PauseGame::Update(const sf::Time& deltaTime)
 
     if (isSaveButtonPressed)
     {
-        // Save the game state here
-        // Now, you can either return to the game or go to the main menu
-        // In this example, let's go back to the game
+        writeTemporaryDataToFinal("assets/savedGameScores/temporaryScores.txt",
+            "assets/savedGameScores/finalScores.txt");
         context->states->Add(std::make_unique<MainMenu>(context), true);
-        std::cout << "Game saved successfully." << std::endl;
 
     }
     if (isExitButtonPressed)
     {
         context->states->Add(std::make_unique<MainMenu>(context), true);
     }
+}
+
+
+
+string* PauseGame::writeTemporaryDataToFinal(const std::string& fromFile, const std::string& toFile) {
+    std::ifstream file(fromFile, std::ios::binary);
+
+    if (!file.is_open()) {
+        std::cerr << "Error opening file for reading: " << fromFile << std::endl;
+        return nullptr;
+    }
+
+    std::ofstream file1(toFile, std::ios::binary);
+
+    if (!file1.is_open()) {
+        std::cerr << "Error opening file for saving: " << toFile << std::endl;
+        return nullptr;
+    }
+
+    // Allocate memory for an array of 5 elements
+    string* data = new string[6];
+
+    // Read the data from the file
+    for (int i = 0; i < 6; ++i) {
+        file >> data[i];
+        file1 << data[i] << '\n';
+    }
+    
+    cout << "Game saved successfully!";
+
+    return data;
 }
 
 

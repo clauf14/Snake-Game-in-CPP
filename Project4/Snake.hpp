@@ -11,7 +11,7 @@
 class Snake : public sf::Drawable
 {
 public:
-    Snake(int snakeLength = 4, float positionX = 16.f, float positionY = 16.f);
+    Snake(int snakeLength, float positionX, float positionY);
     ~Snake();
 
     /*void Init(const sf::Texture& texture, float posX = 16.f, float posY = 16.f);*/

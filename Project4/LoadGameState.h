@@ -25,7 +25,8 @@ private:
     bool isContinueButtonPressed;
 
     int savedScore; // New member variable to store the saved score
-    void continueGame();
+    string playerName;
+    string* ReadDataFromFile(const std::string& fileName);
 
 public:
     LoadGameState(std::shared_ptr<GameContext>& context);
@@ -35,8 +36,4 @@ public:
     void ProcessInput() override;
     void Update(const sf::Time& deltaTime) override;
     void Draw() override;
-
-private:
-    //int ReadSavedScoreFromFile(const std::string& fileName); // New private function
-    float* ReadSavedDataFromFile(const std::string& fileName);
 };
