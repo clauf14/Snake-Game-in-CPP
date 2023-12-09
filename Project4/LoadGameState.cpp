@@ -113,7 +113,7 @@ void LoadGameState::Update(const sf::Time& deltaTime)
 
     if (isExitButtonPressed)
     {
-        context->states->PopCurrent();
+        context->states->Add(std::make_unique<MainMenu>(context), true);
     }
 
     if (isContinueButtonPressed) 

@@ -1,21 +1,7 @@
-﻿  LoadGameState.cpp
-X:\Learning\IALG Anul 2 Sem 1\Programare C++\SnakeGame\Project4\LoadGameState.cpp(26,22): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-X:\Learning\IALG Anul 2 Sem 1\Programare C++\SnakeGame\Project4\LoadGameState.cpp(41,38): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
-          with
-          [
-              T=unsigned int
-          ]
-X:\Learning\IALG Anul 2 Sem 1\Programare C++\SnakeGame\Project4\LoadGameState.cpp(40,61): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
-          with
-          [
-              T=unsigned int
-          ]
-X:\Learning\IALG Anul 2 Sem 1\Programare C++\SnakeGame\Project4\LoadGameState.cpp(124,19): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-  MainMenu.cpp
+﻿  MainMenu.cpp
 X:\Learning\IALG Anul 2 Sem 1\Programare C++\SnakeGame\Project4\MainMenu.cpp(62,57): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
           ]
-  Generating Code...
   Project4.vcxproj -> X:\Learning\IALG Anul 2 Sem 1\Programare C++\SnakeGame\x64\Debug\Project4.exe

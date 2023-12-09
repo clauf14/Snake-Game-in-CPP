@@ -268,7 +268,7 @@ void MainMenu::Update(const sf::Time& deltaTime)
     }
     else if (isLoadGameButtonPressed)
     {
-        context->states->Add(std::make_unique<LoadGameState>(context));
+        context->states->Add(std::make_unique<LoadGameState>(context), true);
     }
     else if (isSelectColorButtonPressed)
     {
