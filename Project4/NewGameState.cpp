@@ -27,6 +27,21 @@ void NewGameState::saveNameToFile(const string& name, const string& fileName)
     file << name;
 }
 
+void NewGameState::saveNamesToFile(const std::string& name, const std::string& fileName)
+{
+    std::ofstream file(fileName, std::ios::app);
+    if (file.is_open())
+    {
+        file << name << std::endl;
+        file.close();
+        std::cout << "Name saved to file: " << name << std::endl;
+    }
+    else
+    {
+        std::cerr << "Unable to open file for writing: " << fileName << std::endl;
+    }
+}
+
 void NewGameState::Init()
 {
     //TextBox
@@ -166,8 +181,10 @@ void NewGameState::Update(const sf::Time& deltaTime)
 
     if (isPeacefulButtonPressed)
     {
-       context->states->Add(std::make_unique<GamePlay>(context), true);
-       saveNameToFile(textBox.getText(), "assets/scores/playerName.txt");
+        saveNameToFile(textBox.getText(), "assets/scores/playerName.txt");
+        saveNamesToFile(textBox.getText(), "assets/scores/names.txt");
+            
+        context->states->Add(std::make_unique<GamePlay>(context), true);
     }
 
     if (isExitButtonPressed)

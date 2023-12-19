@@ -144,6 +144,7 @@
     <ClCompile Include="GameOver.cpp" />
     <ClCompile Include="GamePlay.cpp" />
     <ClCompile Include="HelpState.cpp" />
+    <ClCompile Include="LeaderBoardState.cpp" />
     <ClCompile Include="LoadGameState.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
@@ -161,6 +162,7 @@
     <ClInclude Include="GameOver.hpp" />
     <ClInclude Include="GamePlay.hpp" />
     <ClInclude Include="HelpState.h" />
+    <ClInclude Include="LeaderBoardState.h" />
     <ClInclude Include="LoadGameState.h" />
     <ClInclude Include="MainMenu.hpp" />
     <ClInclude Include="NewGameState.h" />

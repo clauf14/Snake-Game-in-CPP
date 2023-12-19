@@ -3,12 +3,13 @@
 #include <SFML/Window/Event.hpp>
 
 MainMenu::MainMenu(std::shared_ptr<GameContext>& context)
-    : context(context), isPlayButtonSelected(true),
-    isPlayButtonPressed(false), isExitButtonSelected(false),
-    isExitButtonPressed(false), isLoadGameButtonSelected(false),
-    isLoadGameButtonPressed(false), isSelectColorButtonSelected(false),
-    isSelectColorButtonPressed(false), isHelpButtonSelected(false),
-    isHelpButtonPressed(false)
+    : context(context), 
+    isPlayButtonSelected(true), isPlayButtonPressed(false), 
+    isExitButtonSelected(false), isExitButtonPressed(false), 
+    isLoadGameButtonSelected(false), isLoadGameButtonPressed(false), 
+    isSelectColorButtonSelected(false), isSelectColorButtonPressed(false), 
+    isSelectedLeaderBoardSelected(false), isSelectedLeaderBoardPressed(false),
+    isHelpButtonSelected(false), isHelpButtonPressed(false)
 {
 }
 
@@ -81,6 +82,15 @@ void MainMenu::Init()
         context->window->getSize().y / 2 + 70.f);
     selectColorButton.setCharacterSize(30);
 
+    // LeaderBoard Button
+    leaderBoardButton.setFont(context->assets->getFont(MAIN_FONT));
+    leaderBoardButton.setString("Leader Board");
+    leaderBoardButton.setOrigin(playButton.getLocalBounds().width / 2,
+        leaderBoardButton.getLocalBounds().height / 2);
+    leaderBoardButton.setPosition(context->window->getSize().x / 5 - 55.f,
+        context->window->getSize().y / 2 + 90.f);
+    leaderBoardButton.setCharacterSize(30);
+
     // Help Button
     helpButton.setFont(context->assets->getFont(MAIN_FONT));
     helpButton.setString("Help");
@@ -128,6 +138,11 @@ void MainMenu::ProcessInput()
                 else if (isSelectColorButtonSelected)
                 {
                     isSelectColorButtonSelected = false;
+                    isSelectedLeaderBoardSelected = true;
+                }
+                else if (isSelectedLeaderBoardSelected)
+                {
+                    isSelectedLeaderBoardSelected = false;
                     isHelpButtonSelected = true;
                 }
                 else if (isHelpButtonSelected)
@@ -157,6 +172,11 @@ void MainMenu::ProcessInput()
                 else if(isHelpButtonSelected)
                 {
                     isHelpButtonSelected = false;
+                    isSelectedLeaderBoardSelected = true;
+                }
+                else if (isSelectedLeaderBoardSelected)
+                {
+                    isSelectedLeaderBoardSelected = false;
                     isSelectColorButtonSelected = true;
                 }
                 else if (isSelectColorButtonSelected)
@@ -178,6 +198,7 @@ void MainMenu::ProcessInput()
                 isExitButtonPressed = false;
                 isLoadGameButtonPressed = false;
                 isSelectColorButtonPressed = false;
+                isSelectedLeaderBoardPressed = false;
                 isHelpButtonPressed = false;
 
                 if (isPlayButtonSelected)
@@ -195,6 +216,10 @@ void MainMenu::ProcessInput()
                 else if (isSelectColorButtonSelected)
                 {
                     isSelectColorButtonPressed = true;
+                }
+                else if (isSelectedLeaderBoardSelected)
+                {
+                    isSelectedLeaderBoardPressed = true;
                 }
                 else if(isHelpButtonSelected)
                 {
@@ -221,6 +246,7 @@ void MainMenu::Update(const sf::Time& deltaTime)
         exitButton.setFillColor(sf::Color::White);
         loadGameButton.setFillColor(sf::Color::White);
         selectColorButton.setFillColor(sf::Color::White);
+        leaderBoardButton.setFillColor(sf::Color::White);
         helpButton.setFillColor(sf::Color::White);
         
     }
@@ -230,6 +256,7 @@ void MainMenu::Update(const sf::Time& deltaTime)
         playButton.setFillColor(sf::Color::White);
         loadGameButton.setFillColor(sf::Color::White);
         selectColorButton.setFillColor(sf::Color::White);
+        leaderBoardButton.setFillColor(sf::Color::White);
         helpButton.setFillColor(sf::Color::White);
     }
     else if (isLoadGameButtonSelected)
@@ -238,20 +265,32 @@ void MainMenu::Update(const sf::Time& deltaTime)
         playButton.setFillColor(sf::Color::White);
         exitButton.setFillColor(sf::Color::White);
         selectColorButton.setFillColor(sf::Color::White);
+        leaderBoardButton.setFillColor(sf::Color::White);
         helpButton.setFillColor(sf::Color::White);
     }
     else if (isSelectColorButtonSelected)
     {
         selectColorButton.setFillColor(sf::Color::Black);
+        leaderBoardButton.setFillColor(sf::Color::White);
         playButton.setFillColor(sf::Color::White);
         exitButton.setFillColor(sf::Color::White);
         loadGameButton.setFillColor(sf::Color::White);
         helpButton.setFillColor(sf::Color::White);
     }
+    else if (isSelectedLeaderBoardSelected)
+    {
+        leaderBoardButton.setFillColor(sf::Color::Black);
+        helpButton.setFillColor(sf::Color::White);
+        selectColorButton.setFillColor(sf::Color::White);
+        playButton.setFillColor(sf::Color::White);
+        exitButton.setFillColor(sf::Color::White);
+        loadGameButton.setFillColor(sf::Color::White);
+    }
     else if (isHelpButtonSelected)
     {
         helpButton.setFillColor(sf::Color::Black);
         selectColorButton.setFillColor(sf::Color::White);
+        leaderBoardButton.setFillColor(sf::Color::White);
         playButton.setFillColor(sf::Color::White);
         exitButton.setFillColor(sf::Color::White);
         loadGameButton.setFillColor(sf::Color::White);
@@ -274,6 +313,10 @@ void MainMenu::Update(const sf::Time& deltaTime)
     {
         context->states->Add(std::make_unique<SelectColorState>(context), true);
     }
+    else if (isSelectedLeaderBoardPressed)
+    {
+        context->states->Add(std::make_unique<LeaderBoardState>(context), true);
+    }
     else if (isExitButtonPressed)
     {
         context->window->close();
@@ -292,6 +335,7 @@ void MainMenu::Draw()
     context->window->draw(loadGameButton);
     context->window->draw(selectColorButton);
     context->window->draw(helpButton);
+    context->window->draw(leaderBoardButton);
     context->window->draw(exitButton);
     context->window->display();
 }

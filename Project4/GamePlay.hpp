@@ -1,8 +1,8 @@
-// GamePlay.hpp
 #pragma once
 
 #include <memory>
 #include <array>
+#include <sstream>
 
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Text.hpp>
@@ -19,6 +19,8 @@ public:
     GamePlay(std::shared_ptr<GameContext>& context);
     GamePlay(std::shared_ptr<GameContext>& context, int score, float dirX, float dirY, float posX, float posY);
     ~GamePlay();
+
+    void saveScoresToFile(const int& score, const std::string& fileName);
 
     void setSnakeScore(int newScore);
     void setSnakeDirection(const sf::Vector2f& newDirection);

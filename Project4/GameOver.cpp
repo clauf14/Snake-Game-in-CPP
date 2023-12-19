@@ -15,6 +15,27 @@ GameOver::~GameOver()
 {
 }
 
+void GameOver::readAndAppendNameToFile(const std::string& inputFileName, const std::string& outputFileName) {
+    std::ifstream inputFile(inputFileName);
+    if (!inputFile.is_open()) {
+        std::cerr << "Error opening file: " << inputFileName << std::endl;
+        return;
+    }
+
+    std::string name;
+    inputFile >> name;
+    inputFile.close();
+
+    std::ofstream outputFile(outputFileName, std::ios::app);
+    if (!outputFile.is_open()) {
+        std::cerr << "Error appending to file: " << outputFileName << std::endl;
+        return;
+    }
+
+    outputFile << name << std::endl;
+    outputFile.close();
+}
+
 void GameOver::Init()
 {
 
@@ -118,6 +139,7 @@ void GameOver::Update(const sf::Time& deltaTime)
 
     if (isRetryButtonPressed)
     {
+        readAndAppendNameToFile("assets/scores/playerName.txt", "assets/scores/names.txt");
         context->states->Add(std::make_unique<GamePlay>(context), true);
     }
     else if (isExitButtonPressed)

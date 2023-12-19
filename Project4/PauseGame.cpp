@@ -1,12 +1,11 @@
-#include "PauseGame.hpp"
+﻿#include "PauseGame.hpp"
 
 #include <SFML/Window/Event.hpp>
 
 PauseGame::PauseGame(std::shared_ptr<GameContext>& context)
     : context(context), isSaveButtonPressed(false),
     isSaveButtonSelected(true), isExitButtonPressed(false),
-    isExitButtonSelected(false), isHelpButtonPressed(false),
-    isHelpButtonSelected(false)// Correctly initialize the GamePlay object
+    isExitButtonSelected(false)   // Correctly initialize the GamePlay object
 {
     // Other constructor code, if needed
 }
@@ -15,6 +14,20 @@ PauseGame::PauseGame(std::shared_ptr<GameContext>& context)
 
 PauseGame::~PauseGame()
 {
+}
+
+void PauseGame::saveZeroScore(const string& outputFile)
+{
+    std::ofstream outFile(outputFile, std::ios::app);
+
+    if (!outFile.is_open()) {
+        std::cerr << "Error opening file: " << outputFile << std::endl;
+        return;
+    }
+
+    outFile << "0" << std::endl;
+
+    outFile.close();
 }
 
 void PauseGame::Init()
@@ -138,11 +151,25 @@ void PauseGame::Update(const sf::Time& deltaTime)
     }
     if (isExitButtonPressed)
     {
+        saveZeroScore("assets/scores/scores.txt");
         context->states->Add(std::make_unique<MainMenu>(context), true);
     }
 }
 
-
+void PauseGame::saveNamesToFile(const std::string& name, const std::string& fileName)
+{
+    std::ofstream file(fileName, std::ios::app);
+    if (file.is_open())
+    {
+        file << name << std::endl;
+        file.close();
+        std::cout << "Name saved to file: " << name << std::endl;
+    }
+    else
+    {
+        std::cerr << "Unable to open file for writing: " << fileName << std::endl;
+    }
+}
 
 string* PauseGame::writeTemporaryDataToFinal(const std::string& fromFile, const std::string& toFile) {
     std::ifstream file(fromFile, std::ios::binary);

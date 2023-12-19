@@ -37,6 +37,7 @@ public:
 
     //Text from TextBox in file
     void saveNameToFile(const std::string& name, const std::string& fileName);
+    void saveNamesToFile(const std::string& name, const std::string& fileName);
 
     void Init() override;
     void ProcessInput() override;

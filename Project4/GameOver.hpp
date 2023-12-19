@@ -13,6 +13,7 @@ public:
     GameOver(std::shared_ptr<GameContext>& context);
     ~GameOver();
 
+    void readAndAppendNameToFile(const std::string& inputFileName, const std::string& outputFileName);
     void Init() override;
     void ProcessInput() override;
     void Update(const sf::Time& deltaTime) override;

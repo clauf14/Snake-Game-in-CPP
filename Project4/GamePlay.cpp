@@ -1,4 +1,4 @@
-#include "GamePlay.hpp"
+﻿#include "GamePlay.hpp"
 #include "GameOver.hpp"
 #include "PauseGame.hpp"
 #include <fstream>
@@ -48,6 +48,7 @@ GamePlay::~GamePlay()
 
 void GamePlay::Init()
 {
+   
     if (!eatBuffer.loadFromFile("assets/sounds/eat.wav"))
     {
         return;
@@ -157,6 +158,7 @@ void GamePlay::Update(const sf::Time& deltaTime)
                 if (snake.IsOn(wall))
                 {
                     gameOverSound.play();
+                    saveScoresToFile(score, "assets/scores/scores.txt");
                     context->states->Add(std::make_unique<GameOver>(context), true);
                     break;
                 }
@@ -187,12 +189,28 @@ void GamePlay::Update(const sf::Time& deltaTime)
 
             if (snake.IsSelfIntersecting())
             {
-                gameOverSound.play();
+                gameOverSound.play();   
+                saveScoresToFile(score, "assets/scores/scores.txt");
                 context->states->Add(std::make_unique<GameOver>(context), true);
             }
 
             elapsedTime = sf::Time::Zero;
         }
+    }
+}
+
+void GamePlay::saveScoresToFile(const int& score, const std::string& fileName)
+{
+    std::ofstream file(fileName, std::ios::app);
+    if (file.is_open())
+    {
+        file << score << std::endl;
+        file.close();
+        std::cout << "Score saved to file: " << score << std::endl;
+    }
+    else
+    {
+        std::cerr << "Unable to open file for writing: " << fileName << std::endl;
     }
 }
 

@@ -13,6 +13,7 @@
 #include "LoadGameState.h"
 #include "SelectColorState.h"
 #include "GamePlay.hpp"
+#include "LeaderBoardState.h"
 
 using namespace sf;
 
@@ -24,6 +25,7 @@ private:
     Text playButton;
     Text loadGameButton;
     Text selectColorButton;
+    Text leaderBoardButton;
     Text helpButton;
     Text exitButton;
 
@@ -34,7 +36,7 @@ private:
     RectangleShape background;
     RectangleShape menuBackground;
     RectangleShape snakeBackground;
-    SnakeColor snakeColor;;
+    SnakeColor snakeColor;
     Sprite snakeImageSprite;
 
     Font font;
@@ -47,6 +49,9 @@ private:
 
     bool isSelectColorButtonSelected;
     bool isSelectColorButtonPressed;
+
+    bool isSelectedLeaderBoardSelected;
+    bool isSelectedLeaderBoardPressed;
 
     bool isHelpButtonSelected;
     bool isHelpButtonPressed;
