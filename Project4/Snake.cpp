@@ -1,4 +1,4 @@
-#include "Snake.hpp"
+﻿#include "Snake.hpp"
 #include <iostream>
 
 Snake::Snake(int snakeLength, float positionX, float positionY) : body(std::list<sf::Sprite>(snakeLength))
@@ -8,8 +8,6 @@ Snake::Snake(int snakeLength, float positionX, float positionY) : body(std::list
     this->posX = positionX;
     this->posY = positionY;
 }
-
-
 
 Snake::~Snake()
 {
@@ -48,7 +46,7 @@ void Snake::Init(const sf::Texture& texture)
     {
         piece.setTexture(texture);
         piece.setPosition({ x, posY });
-        x += 16.f;
+        x += 0.f;
     }
 }
 

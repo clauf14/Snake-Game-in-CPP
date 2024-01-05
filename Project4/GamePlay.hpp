@@ -17,7 +17,7 @@ class GamePlay : public Engine::State
 {
 public:
     GamePlay(std::shared_ptr<GameContext>& context);
-    GamePlay(std::shared_ptr<GameContext>& context, int score, float dirX, float dirY, float posX, float posY);
+    GamePlay(std::shared_ptr<GameContext>& context, int score, float dirX, float dirY, float posX, float posY, string difficulty);
     ~GamePlay();
 
     void saveScoresToFile(const int& score, const std::string& fileName);
@@ -26,6 +26,12 @@ public:
     void setSnakeDirection(const sf::Vector2f& newDirection);
     void SaveGameState(const std::string& filename, int score, float posX, float posY, float dirX, float dirY);
     string ReadPlayerName(const std::string& filename);
+    string readDifficultyFromFile(const std::string& fileName);
+
+    //Hardcore Diff
+    void GenerateRandomObstacles(int numObstacles);
+    void GenerateFood();
+    bool IsFoodOnObstacle(int x, int y);
 
     void Init() override;
     void ProcessInput() override;
@@ -39,7 +45,9 @@ private:
     sf::Sprite grass;
     sf::Sprite food;
     std::array<sf::Sprite, 4> walls;
+    std::vector<sf::Sprite> obstacles;
     Snake snake;
+    double speed = 0.1;
 
     sf::Sound eatSound;
     sf::Sound gameOverSound;
@@ -48,6 +56,7 @@ private:
 
     sf::Text scoreText;
     sf::Text playerName;
+    std::string diff;
     int score;
 
     sf::Vector2f snakeDirection;

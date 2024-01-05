@@ -34,7 +34,7 @@ void LoadGameState::Init()
 
     // Set the text for the Continue button with the saved score
     continueButton.setFont(context->assets->getFont(MAIN_FONT));
-    continueButton.setString("Continue -> Player name: " + playerName + ", Score " + std::to_string(savedScore));
+    continueButton.setString("Continue -> Player name: " + playerName + " || Difficulty: " + saveData[6] + " || Score: " + std::to_string(savedScore));
     continueButton.setOrigin(continueButton.getLocalBounds().width / 2,
         continueButton.getLocalBounds().height / 2);
     continueButton.setPosition(context->window->getSize().x / 2,
@@ -126,9 +126,9 @@ void LoadGameState::Update(const sf::Time& deltaTime)
         float posY = stof(savedData[3]);
         float dirX = stof(savedData[4]);
         float dirY = stof(savedData[5]);
+        string diff = savedData[6];
 
-        context->states->Add(std::make_unique<GamePlay>(context, score , dirX, dirY, posX, posY), true);
-
+        context->states->Add(std::make_unique<GamePlay>(context, score , dirX, dirY, posX, posY, diff), true);
 
     }
 }
@@ -143,17 +143,12 @@ string* LoadGameState::ReadDataFromFile(const std::string& filename) {
         return nullptr;
     }
 
-    string* data = new string[6];
+    string* data = new string[7];
 
     // Read the data from the file
-    for (int i = 0; i < 6; ++i) {
+    for (int i = 0; i < 7; ++i) {
         file >> data[i];
     }
-
-    // Debugging output
-   /* std::cout << "Read Score: " << data[0] << std::endl;
-    std::cout << "Read Snake Position: (x= " << data[1] << ",y= " << data[2] << ")" << std::endl;
-    std::cout << "Read Snake Direction: (x= " << data[3] << ",y= " << data[4] << ")" << std::endl;*/
 
     return data;
 }

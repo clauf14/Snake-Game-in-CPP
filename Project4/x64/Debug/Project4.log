@@ -1,10 +1,20 @@
 ﻿  NewGameState.cpp
-C:\Users\Calculatorul Meu\Desktop\Snake Game\SnakeGame\Project4\NewGameState.cpp(67,38): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+C:\Users\Calculatorul Meu\Desktop\Snake Game\SnakeGame\Project4\NewGameState.cpp(84,38): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
           ]
-C:\Users\Calculatorul Meu\Desktop\Snake Game\SnakeGame\Project4\NewGameState.cpp(66,61): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+C:\Users\Calculatorul Meu\Desktop\Snake Game\SnakeGame\Project4\NewGameState.cpp(83,61): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+C:\Users\Calculatorul Meu\Desktop\Snake Game\SnakeGame\Project4\NewGameState.cpp(93,42): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+C:\Users\Calculatorul Meu\Desktop\Snake Game\SnakeGame\Project4\NewGameState.cpp(92,61): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int

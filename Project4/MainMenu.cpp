@@ -51,7 +51,7 @@ void MainMenu::Init()
         gameTitle.getLocalBounds().height / 2);
 
 
-    gameTitle.setPosition(context->window->getSize().x / 5 - 60.f , //latime (cu - e in stanga, cu + in dreapta)
+    gameTitle.setPosition(context->window->getSize().x / 5 - 60.f, //latime (cu - e in stanga, cu + in dreapta)
         context->window->getSize().y / 2 - 250.f); //inaltime (cu - e in sus, cu + in jos)
     gameTitle.setCharacterSize(50);
 
@@ -59,54 +59,54 @@ void MainMenu::Init()
     playButton.setFont(context->assets->getFont(MAIN_FONT));
     playButton.setString("Play");
     playButton.setOrigin(playButton.getLocalBounds().width / 2 + 10.f,
-    playButton.getLocalBounds().height / 2);
+        playButton.getLocalBounds().height / 2);
     playButton.setPosition(context->window->getSize().x / 5,
-        context->window->getSize().y / 2 - 70.f );
+        context->window->getSize().y / 2 - 100.f);
     playButton.setCharacterSize(30);
 
     // Load Game Button
     loadGameButton.setFont(context->assets->getFont(MAIN_FONT));
     loadGameButton.setString("Load Game");
-    loadGameButton.setOrigin(playButton.getLocalBounds().width / 2,
-    loadGameButton.getLocalBounds().height / 2);
-    loadGameButton.setPosition(context->window->getSize().x / 5 - 50.f,
-        context->window->getSize().y / 2 - 0.f);
+    loadGameButton.setOrigin(loadGameButton.getLocalBounds().width / 2,
+        loadGameButton.getLocalBounds().height / 2);
+    loadGameButton.setPosition(menuBackground.getSize().x / 2,
+        context->window->getSize().y / 2 - 30.f);
     loadGameButton.setCharacterSize(30);
 
     // Select Color Button
     selectColorButton.setFont(context->assets->getFont(MAIN_FONT));
     selectColorButton.setString("Select Color");
-    selectColorButton.setOrigin(playButton.getLocalBounds().width / 2,
-    selectColorButton.getLocalBounds().height / 2);
-    selectColorButton.setPosition(context->window->getSize().x / 5 - 55.f,
-        context->window->getSize().y / 2 + 70.f);
+    selectColorButton.setOrigin(selectColorButton.getLocalBounds().width / 2,
+        selectColorButton.getLocalBounds().height / 2);
+    selectColorButton.setPosition(menuBackground.getSize().x / 2,
+        context->window->getSize().y / 2 + 40.f);
     selectColorButton.setCharacterSize(30);
 
     // LeaderBoard Button
     leaderBoardButton.setFont(context->assets->getFont(MAIN_FONT));
     leaderBoardButton.setString("Leader Board");
-    leaderBoardButton.setOrigin(playButton.getLocalBounds().width / 2,
+    leaderBoardButton.setOrigin(leaderBoardButton.getLocalBounds().width / 2,
         leaderBoardButton.getLocalBounds().height / 2);
-    leaderBoardButton.setPosition(context->window->getSize().x / 5 - 55.f,
-        context->window->getSize().y / 2 + 90.f);
+    leaderBoardButton.setPosition(menuBackground.getSize().x / 2,
+        context->window->getSize().y / 2 + 110.f);
     leaderBoardButton.setCharacterSize(30);
 
     // Help Button
     helpButton.setFont(context->assets->getFont(MAIN_FONT));
     helpButton.setString("Help");
-    helpButton.setOrigin(playButton.getLocalBounds().width / 2,
+    helpButton.setOrigin(helpButton.getLocalBounds().width / 2,
         helpButton.getLocalBounds().height / 2);
-    helpButton.setPosition(context->window->getSize().x / 5 - 10.f ,
-        context->window->getSize().y / 2 + 150.f);
+    helpButton.setPosition(menuBackground.getSize().x / 2,
+        context->window->getSize().y / 2 + 180.f);
     helpButton.setCharacterSize(30);
 
     // Exit Button
     exitButton.setFont(context->assets->getFont(MAIN_FONT));
     exitButton.setString("Exit");
     exitButton.setOrigin(exitButton.getLocalBounds().width / 2,
-    exitButton.getLocalBounds().height / 2);
-    exitButton.setPosition(context->window->getSize().x / 5 - 10.f,
-        context->window->getSize().y / 2 + 210.f);
+        exitButton.getLocalBounds().height / 2);
+    exitButton.setPosition(menuBackground.getSize().x / 2,
+        menuBackground.getSize().y / 2 + 250.f);
     exitButton.setCharacterSize(30);
 }
 

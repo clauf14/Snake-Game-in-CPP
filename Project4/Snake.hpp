@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include <list>
 
@@ -7,6 +7,8 @@
 #include <SFML/Graphics/Drawable.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/Graphics/RenderStates.hpp>
+#include <SFML/System/Time.hpp>
+
 
 class Snake : public sf::Drawable
 {
@@ -32,6 +34,10 @@ public:
 private:
     float posX;
     float posY;
+
+    int eatenApples;
+    float speed;
+
     std::list<sf::Sprite> body;
     std::list<sf::Sprite>::iterator head;
     std::list<sf::Sprite>::iterator tail;

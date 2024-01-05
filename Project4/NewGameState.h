@@ -11,8 +11,9 @@ class NewGameState : public Engine::State
 {
 private:
     std::shared_ptr<GameContext> context;
-    Text peacefulButton;
     Text exitButton;
+    Text peacefulButton;
+    Text hardcoreButton;
 
     RectangleShape background;
     Sprite snakeImage;
@@ -31,6 +32,9 @@ private:
     bool isPeacefulButtonSelected;
     bool isPeacefulButtonPressed;
 
+    bool isHardcoreButtonSelected;
+    bool isHardcoreButtonPressed;
+
 public:
     NewGameState(std::shared_ptr<GameContext>& context);
     ~NewGameState();
@@ -38,6 +42,7 @@ public:
     //Text from TextBox in file
     void saveNameToFile(const std::string& name, const std::string& fileName);
     void saveNamesToFile(const std::string& name, const std::string& fileName);
+    void saveDifficultyToFile(const std::string& difficulty, const std::string& fileName);
 
     void Init() override;
     void ProcessInput() override;
