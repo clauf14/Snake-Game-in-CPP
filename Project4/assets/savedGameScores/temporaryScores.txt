@@ -1,7 +1,7 @@
-Anonymous
+clau
 2
-768
-368
-16
+560
+336
+-16
 0
-Hardcore
+Peaceful

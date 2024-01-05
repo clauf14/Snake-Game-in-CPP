@@ -20,11 +20,6 @@ MainMenu::~MainMenu()
 void MainMenu::Init()
 {
 
-    if (!music.openFromFile("assets/sounds/background.ogg"))
-        return; // error
-    music.play();
-    music.setVolume(20);
-
     blueColor = sf::Color(102, 178, 255);
 
     this->background.setSize(Vector2f(1280, 720));

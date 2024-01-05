@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="GameOver">
+    <Position X="0.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQSggAIAAAAAgAAIAAAAAAAwgAgAAQAgEACAAAAAAA=</HashCode>
+      <FileName>GameOver.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GamePlay">
+    <Position X="5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CCQiAQAgASpAQxQAAAEIACAAAAAgBYAQKIACAQIAIAI=</HashCode>
+      <FileName>GamePlay.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HelpState">
+    <Position X="9.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYSAAAABAAAAiAAIAAAAAAAAAAhAAAAggACAAAAIAA=</HashCode>
+      <FileName>HelpState.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LeaderBoardState">
+    <Position X="14" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAQSAkACQAAAAgABIAAAAIAgAAAgAAAAoAACAAAEIAA=</HashCode>
+      <FileName>LeaderBoardState.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoadGameState">
+    <Position X="18.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABYSAAAAAAAAAoAAIAEACQEAAgAhAAAAgAACQAAAoAA=</HashCode>
+      <FileName>LoadGameState.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MainMenu">
+    <Position X="2.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAd6AgBQEAAGIgEAKAAAIAAQAAIgCAJAgAByAAIAIAA=</HashCode>
+      <FileName>MainMenu.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewGameState">
+    <Position X="7.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYSBkAAAIWAAgACIAAAAAAAAAIhIAQAiAACAACAIAE=</HashCode>
+      <FileName>NewGameState.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PauseGame">
+    <Position X="11.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQSAAggAIABAgAAICAAAACAAAAoAAAAiAACAAAAACA=</HashCode>
+      <FileName>PauseGame.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SelectColorState">
+    <Position X="16.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEYSAAABAAAAAgAAIAAAAAAAgAAhAAAAgAACAAAAIAA=</HashCode>
+      <FileName>SelectColorState.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SnakeColor" Collapsed="true">
+    <Position X="21" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAIAAA=</HashCode>
+      <FileName>SnakeColor.cpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TextBox" Collapsed="true">
+    <Position X="24.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAIAAAACAAAACACCBAEAgAgIAAAACAAAABA=</HashCode>
+      <FileName>TextBox.cpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Game" Collapsed="true">
+    <Position X="22.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAABAAAAAAAAAQAAAAiAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Game.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Snake" Collapsed="true">
+    <Position X="24.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgBgIAAAAAAAAIAAAAIAQAIAQCAAQBiwAAAMgA=</HashCode>
+      <FileName>Snake.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Engine::AssetMan" Collapsed="true">
+    <Position X="21" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAFAAAgAAAAAAAAAAAAAAAAAIEAAAAAAUAAA=</HashCode>
+      <FileName>AssetMan.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Engine::State">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQgAAAAACAAAgAAAAAAAAAAAAAgAAAAAAACBBAAAAA=</HashCode>
+      <FileName>State.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Engine::StateMan" Collapsed="true">
+    <Position X="22.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAKAIAAAAAAAAAAEAAAAACAAAAAAAAAAAAAAAEACJIA=</HashCode>
+      <FileName>StateMan.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="GameContext" Collapsed="true">
+    <Position X="21" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAECAMAAAAAAAAAAA=</HashCode>
+      <FileName>Game.hpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Enum Name="AssetID" Collapsed="true">
+    <Position X="21" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAACAAAACAhAAgAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Game.hpp</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

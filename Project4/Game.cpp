@@ -18,6 +18,12 @@ void Game::Run()
     sf::CircleShape shape(100.f);
     shape.setFillColor(sf::Color::Green);
 
+    if (!music.openFromFile("assets/sounds/background.ogg"))
+        return; // error
+
+    music.play();
+    music.setVolume(15);
+
     sf::Clock clock;
     sf::Time timeSinceLastFrame = sf::Time::Zero;
 

@@ -3,6 +3,7 @@
 #include <memory>
 
 #include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/Audio/Music.hpp>
 
 #include "AssetMan.hpp"
 #include "StateMan.hpp"
@@ -43,4 +44,5 @@ public:
 private:
     std::shared_ptr<GameContext> context;
     const sf::Time TIME_PER_FRAME = sf::seconds(1.f / 60.f);
+    sf::Music music;
 };
