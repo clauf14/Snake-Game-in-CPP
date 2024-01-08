@@ -37,8 +37,9 @@ void PauseGame::Init()
     pauseTitle.setString("Paused");
     pauseTitle.setOrigin(pauseTitle.getLocalBounds().width / 2,
         pauseTitle.getLocalBounds().height / 2);
-    pauseTitle.setPosition(context->window->getSize().x / 2,
-        context->window->getSize().y / 2 - 100.f);
+    pauseTitle.setPosition(context->window->getSize().x / 2 - 25.f,
+        context->window->getSize().y / 2 - 150.f);
+    pauseTitle.setCharacterSize(50);
 
     // Save Button
     saveButton.setFont(context->assets->getFont(MAIN_FONT));

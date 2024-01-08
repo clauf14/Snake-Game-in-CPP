@@ -14,10 +14,9 @@ LoadGameState::~LoadGameState()
 
 void LoadGameState::Init()
 {
-    this->background.setSize(Vector2f(1280, 720));
-    this->background.setFillColor(Color::White);
 
-    context->assets->addTexture(SNAKE_HELP_IMAGE, "assets/textures/snakeHelpImage.jpg");
+    context->assets->addTexture(NORMAL_BACKGROUND, "assets/textures/normalBackground.jpg");
+    background.setTexture(context->assets->getTexture(NORMAL_BACKGROUND));
 
     context->assets->addFont(MAIN_FONT, "assets/fonts/Pacifico-Regular.ttf");
 
@@ -155,7 +154,7 @@ string* LoadGameState::ReadDataFromFile(const std::string& filename) {
 
 void LoadGameState::Draw()
 {
-    context->window->clear(sf::Color::Magenta);
+    context->window->draw(background);
     context->window->draw(firstSave);
     context->window->draw(exitButton);
     context->window->draw(continueButton);

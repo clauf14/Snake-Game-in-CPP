@@ -14,7 +14,7 @@ private:
     Text exitButton;
     Text continueButton; // Add the new Continue button
 
-    RectangleShape background;
+    Sprite background;
     Sprite snakeImage;
 
     Font font;

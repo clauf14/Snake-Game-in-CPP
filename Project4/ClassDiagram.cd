@@ -98,18 +98,18 @@
       <FileName>AssetMan.hpp</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Engine::State">
-    <Position X="17.5" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAQgAAAAACAAAgAAAAAAAAAAAAAgAAAAAAACBBAAAAA=</HashCode>
-      <FileName>State.hpp</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="Engine::StateMan">
     <Position X="9.5" Y="24.5" Width="3.5" />
     <TypeIdentifier>
       <HashCode>AAKAIAAAAAAAAAAEAAAAACAAAAAAAAAAAAAAAEACJIA=</HashCode>
       <FileName>StateMan.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Engine::State">
+    <Position X="17.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQgAAAAACAAAgAAAAAAAAAAAAAgAAAAAAACBBAAAAA=</HashCode>
+      <FileName>State.hpp</FileName>
     </TypeIdentifier>
   </Class>
   <Struct Name="GameContext">

@@ -9,9 +9,10 @@ class SelectColorState : public Engine::State
 private:
     std::shared_ptr<GameContext> context;
     Text colorOne;
+    Text colorTwo;
     Text exitButton;
 
-    RectangleShape background;
+    Sprite background;
     Sprite snakeImage;
 
     Font font;

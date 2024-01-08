@@ -23,6 +23,7 @@ void Game::Run()
 
     music.play();
     music.setVolume(15);
+    music.setLoop(true);
 
     sf::Clock clock;
     sf::Time timeSinceLastFrame = sf::Time::Zero;

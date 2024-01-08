@@ -32,6 +32,7 @@ private:
 
     RectangleShape background;
     RectangleShape menuBackground;
+    Sprite menuBackgroundSprite;
     RectangleShape snakeBackground;
     SnakeColor snakeColor;
     Sprite snakeImageSprite;

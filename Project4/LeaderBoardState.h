@@ -8,6 +8,7 @@
 
 
 #include <SFML/Graphics/Text.hpp>
+#include <SFML/Graphics/Sprite.hpp>
 
 #include "State.hpp"
 #include "Game.hpp"
@@ -34,11 +35,11 @@ private:
     shared_ptr<GameContext> context;
 
     Color blueColor;
-    RectangleShape background;
     Text peacefulLeaders;
     Text peacefulDif;
     Text hardcoreDif;
     Text exitButton;
+    Sprite background;
 
     map<string, int> scoreAndName;
     std::vector<std::pair<std::string, int>> scoreVector;

@@ -63,15 +63,13 @@ void NewGameState::Init()
     //TextBox
     textBoxFont.loadFromFile("assets/fonts/Pacifico-Regular.ttf");
     textBox.setFont(textBoxFont);
-    textBox.setPosition({ 250, 250 });
-    textBox.setLimit(true, 30);
+    textBox.setPosition({ 230, 318 });
+    textBox.setLimit(true, 20);
 
     blueColor = sf::Color(102, 178, 255);
 
-    this->background.setSize(Vector2f(1280, 720));
-    this->background.setFillColor(Color::White);
-
-    context->assets->addTexture(SNAKE_HELP_IMAGE, "assets/textures/snakeHelpImage.jpg");
+    context->assets->addTexture(NEW_GAME_BACKGROUND, "assets/textures/NewGameBackground.jpg");
+    background.setTexture(context->assets->getTexture(NEW_GAME_BACKGROUND));
 
     context->assets->addFont(MAIN_FONT, "assets/fonts/Pacifico-Regular.ttf");
 
@@ -80,8 +78,8 @@ void NewGameState::Init()
     peacefulButton.setString("Peaceful");
     peacefulButton.setOrigin(peacefulButton.getLocalBounds().width / 2,
         peacefulButton.getLocalBounds().height / 2);
-    peacefulButton.setPosition(context->window->getSize().x / 2, //latime (cu - e in stanga, cu + in dreapta)
-        context->window->getSize().y / 2); //inaltime (cu - e in sus, cu + in jos)
+    peacefulButton.setPosition(context->window->getSize().x / 2 + 257.f, //latime (cu - e in stanga, cu + in dreapta)
+        context->window->getSize().y / 2 - 27.f); //inaltime (cu - e in sus, cu + in jos)
     peacefulButton.setCharacterSize(30);
 
     //Hardcore Button
@@ -89,8 +87,8 @@ void NewGameState::Init()
     hardcoreButton.setString("Hardcore");
     hardcoreButton.setOrigin(hardcoreButton.getLocalBounds().width / 2,
         hardcoreButton.getLocalBounds().height / 2);
-    hardcoreButton.setPosition(context->window->getSize().x / 2, //latime (cu - e in stanga, cu + in dreapta)
-        context->window->getSize().y / 2 + 200); //inaltime (cu - e in sus, cu + in jos)
+    hardcoreButton.setPosition(context->window->getSize().x / 2 + 260.f, //latime (cu - e in stanga, cu + in dreapta)
+        context->window->getSize().y / 2 + 118); //inaltime (cu - e in sus, cu + in jos)
     hardcoreButton.setCharacterSize(30);
 
     // Exit Button
@@ -98,8 +96,8 @@ void NewGameState::Init()
     exitButton.setString("Exit");
     exitButton.setOrigin(exitButton.getLocalBounds().width / 2,
         exitButton.getLocalBounds().height / 2);
-    exitButton.setPosition(context->window->getSize().x / 5 - 180.f,
-        context->window->getSize().y / 2 - 310.f);
+    exitButton.setPosition(context->window->getSize().x / 5 - 120.f,
+        context->window->getSize().y / 2 - 302.f);
     exitButton.setCharacterSize(30);
 }
 
@@ -146,7 +144,7 @@ void NewGameState::ProcessInput()
                     isPeacefulButtonSelected = false;
                     isHardcoreButtonSelected = true;
                 }
-                if (isHardcoreButtonSelected)
+                else if (isHardcoreButtonSelected)
                 {
                     isHardcoreButtonSelected = false;
                     isExitButtonSelected = true;
@@ -165,7 +163,7 @@ void NewGameState::ProcessInput()
                     isExitButtonSelected = true;
                     isPeacefulButtonSelected = false;
                 }
-                if (isHardcoreButtonSelected)
+                else if (isHardcoreButtonSelected)
                 {
                     isHardcoreButtonSelected = false;
                     isPeacefulButtonSelected = true;
@@ -275,8 +273,8 @@ void NewGameState::Update(const sf::Time& deltaTime)
 
 void NewGameState::Draw()
 {
-    context->window->clear(blueColor);
-    context->window->draw(this->snakeImage);
+    /*context->window->clear(blueColor);*/
+    context->window->draw(background);
     context->window->draw(peacefulButton);
     context->window->draw(hardcoreButton);
     context->window->draw(exitButton);

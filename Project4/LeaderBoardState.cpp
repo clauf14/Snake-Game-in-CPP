@@ -70,28 +70,30 @@ void LeaderBoardState::Init()
         std::cout << "Leader: " << entry.first << ", Score: " << entry.second << std::endl;
     }
 
-    blueColor = sf::Color(102, 178, 255);
-    this->background.setSize(Vector2f(1280, 720));
+    context->assets->addTexture(NORMAL_BACKGROUND, "assets/textures/normalBackground.jpg");
+    background.setTexture(context->assets->getTexture(NORMAL_BACKGROUND));
 
     // Peaceful Difficulty Title
     peacefulDif.setFont(context->assets->getFont(MAIN_FONT));
     peacefulDif.setString("Peaceful Difficulty");
     peacefulDif.setOrigin(peacefulDif.getLocalBounds().width / 2,
         peacefulDif.getLocalBounds().height / 2);
-    peacefulDif.setPosition(context->window->getSize().x / 2 - 400.f,
-        context->window->getSize().y / 2 - 300.f);
+    peacefulDif.setPosition(context->window->getSize().x / 2 - 350.f,
+        context->window->getSize().y / 2 - 250.f);
 
     peacefulLeaders.setFont(context->assets->getFont(MAIN_FONT));
-    peacefulLeaders.setCharacterSize(20);
-    peacefulLeaders.setFillColor(sf::Color::Magenta);
+    peacefulLeaders.setCharacterSize(30);
+    peacefulLeaders.setFillColor(sf::Color::White);
+    peacefulDif.setOrigin(peacefulDif.getLocalBounds().width / 2,
+        peacefulDif.getLocalBounds().height / 2);
 
     // Hardcore Difficulty Title
     hardcoreDif.setFont(context->assets->getFont(MAIN_FONT));
     hardcoreDif.setString("Hardcore Difficulty");
     hardcoreDif.setOrigin(hardcoreDif.getLocalBounds().width / 2,
         hardcoreDif.getLocalBounds().height / 2);
-    hardcoreDif.setPosition(context->window->getSize().x / 2 + 400.f,
-        context->window->getSize().y / 2 - 300.f);
+    hardcoreDif.setPosition(context->window->getSize().x / 2 + 350.f,
+        context->window->getSize().y / 2 - 250.f);
 
     // Exit Button
     exitButton.setFont(context->assets->getFont(MAIN_FONT));
@@ -99,7 +101,7 @@ void LeaderBoardState::Init()
     exitButton.setOrigin(exitButton.getLocalBounds().width / 2,
         exitButton.getLocalBounds().height / 2);
     exitButton.setPosition(context->window->getSize().x / 2,
-        context->window->getSize().y / 2 + 200.f);
+        context->window->getSize().y / 2 + 230.f);
     exitButton.setCharacterSize(30);
 }
 
@@ -170,14 +172,14 @@ void LeaderBoardState::Update(const sf::Time& deltaTime)
 
 void LeaderBoardState::Draw()
 {
-    context->window->clear(blueColor);
+    context->window->draw(background);
     int i = 1;
     for (const auto& entry : sortedVector)
     {
         if (i <= 10)
         {   
             peacefulLeaders.setString(std::to_string(i) + ". " + entry.first + "   " + std::to_string(entry.second));
-            peacefulLeaders.setPosition(50, 80 + i * 20);
+            peacefulLeaders.setPosition(160, 130 + i * 40);
             context->window->draw(peacefulLeaders);
         }
         i++;

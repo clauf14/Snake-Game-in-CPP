@@ -39,6 +39,9 @@ void GameOver::readAndAppendNameToFile(const std::string& inputFileName, const s
 void GameOver::Init()
 {
 
+    context->assets->addTexture(NORMAL_BACKGROUND, "assets/textures/normalBackground.jpg");
+    background.setTexture(context->assets->getTexture(NORMAL_BACKGROUND));
+
     blueColor = sf::Color(102,178,255);
     // Title
     gameOverTitle.setFont(context->assets->getFont(MAIN_FONT));
@@ -150,7 +153,7 @@ void GameOver::Update(const sf::Time& deltaTime)
 
 void GameOver::Draw()
 {
-    context->window->clear(blueColor);
+    context->window->draw(background);
     context->window->draw(gameOverTitle);
     context->window->draw(retryButton);
     context->window->draw(exitButton);

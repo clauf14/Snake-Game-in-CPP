@@ -30,8 +30,9 @@ void MainMenu::Init()
     snakeImageSprite.setTexture(context->assets->getTexture(SNAKE_IMAGE));
     snakeImageSprite.setPosition(550, 20);
 
+    context->assets->addTexture(MENU_BACKGROUND, "assets/textures/menuBackground.jpg");
+    menuBackgroundSprite.setTexture(context->assets->getTexture(MENU_BACKGROUND));
     menuBackground.setSize(sf::Vector2f(500, 720));
-    menuBackground.setFillColor(blueColor);
 
     snakeBackground.setSize(sf::Vector2f(670, 670));
     snakeBackground.setFillColor(snakeColor.getColor());
@@ -323,6 +324,7 @@ void MainMenu::Draw()
 {
     context->window->draw(this->background);
     context->window->draw(this->menuBackground);
+    context->window->draw(this->menuBackgroundSprite);
     context->window->draw(this->snakeBackground);
     context->window->draw(this->snakeImageSprite);
     context->window->draw(gameTitle);

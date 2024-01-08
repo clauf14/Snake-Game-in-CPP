@@ -2,6 +2,7 @@
 
 #include <memory>
 
+#include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Text.hpp>
 
 #include "State.hpp"
@@ -25,6 +26,7 @@ private:
     sf::Text retryButton;
     sf::Text exitButton;
     sf::Color blueColor;
+    sf::Sprite background;
 
     bool isRetryButtonSelected;
     bool isRetryButtonPressed;

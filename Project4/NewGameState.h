@@ -15,7 +15,7 @@ private:
     Text peacefulButton;
     Text hardcoreButton;
 
-    RectangleShape background;
+    Sprite background;
     Sprite snakeImage;
 
     //TextBox

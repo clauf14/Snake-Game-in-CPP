@@ -16,7 +16,10 @@ enum AssetID
     WALL,
     SNAKE,
     SNAKE_IMAGE,
-    SNAKE_HELP_IMAGE
+    SNAKE_HELP_IMAGE,
+    NORMAL_BACKGROUND,
+    MENU_BACKGROUND,
+    NEW_GAME_BACKGROUND
 };
 
 struct GameContext

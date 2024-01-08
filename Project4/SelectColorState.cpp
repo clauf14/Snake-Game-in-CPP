@@ -15,9 +15,8 @@ SelectColorState::~SelectColorState()
 
 void SelectColorState::Init()
 {
-
-    this->background.setSize(Vector2f(1280, 720));
-    this->background.setFillColor(Color::White);
+    context->assets->addTexture(NORMAL_BACKGROUND, "assets/textures/normalBackground.jpg");
+    background.setTexture(context->assets->getTexture(NORMAL_BACKGROUND));
 
     context->assets->addTexture(SNAKE_HELP_IMAGE, "assets/textures/snakeHelpImage.jpg");
 
@@ -30,6 +29,14 @@ void SelectColorState::Init()
     colorOne.setPosition(context->window->getSize().x / 2, //latime (cu - e in stanga, cu + in dreapta)
         context->window->getSize().y / 2); //inaltime (cu - e in sus, cu + in jos)
     colorOne.setCharacterSize(20);
+
+    colorTwo.setFont(context->assets->getFont(MAIN_FONT));
+    colorTwo.setString("Blue Color");
+    colorTwo.setOrigin(colorTwo.getLocalBounds().width / 2,
+        colorTwo.getLocalBounds().height / 2);
+    colorTwo.setPosition(context->window->getSize().x / 2 - 100.f, //latime (cu - e in stanga, cu + in dreapta)
+        context->window->getSize().y / 2); //inaltime (cu - e in sus, cu + in jos)
+    colorTwo.setCharacterSize(20);
 
     // Exit Button
     exitButton.setFont(context->assets->getFont(MAIN_FONT));
@@ -91,9 +98,10 @@ void SelectColorState::Update(const sf::Time& deltaTime)
 
 void SelectColorState::Draw()
 {
-    context->window->clear(sf::Color::Red);
+    context->window->draw(background);
     context->window->draw(this->snakeImage);
     context->window->draw(colorOne);
+    context->window->draw(colorTwo);
     context->window->draw(exitButton);
     context->window->display();
 }
