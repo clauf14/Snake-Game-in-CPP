@@ -36,8 +36,20 @@ void GameOver::readAndAppendNameToFile(const std::string& inputFileName, const s
     outputFile.close();
 }
 
+string GameOver::readDifficultyFromFile(const std::string& fileName)
+{
+    std::ifstream file("assets/scores/difficulty.txt", std::ios::binary);
+
+    string diff = "";
+    file >> diff;
+
+    return diff;
+}
+
+
 void GameOver::Init()
 {
+    diff = readDifficultyFromFile("assets/scores/difficulty.txt");
 
     context->assets->addTexture(NORMAL_BACKGROUND, "assets/textures/normalBackground.jpg");
     background.setTexture(context->assets->getTexture(NORMAL_BACKGROUND));
@@ -142,7 +154,14 @@ void GameOver::Update(const sf::Time& deltaTime)
 
     if (isRetryButtonPressed)
     {
-        readAndAppendNameToFile("assets/scores/playerName.txt", "assets/scores/names.txt");
+        if (diff == "Hardcore")
+        {
+            readAndAppendNameToFile("assets/scores/playerName.txt", "assets/scores/hardcoreNames.txt");
+        }
+        else
+        {
+            readAndAppendNameToFile("assets/scores/playerName.txt", "assets/scores/peacefulNames.txt");
+        }
         context->states->Add(std::make_unique<GamePlay>(context), true);
     }
     else if (isExitButtonPressed)

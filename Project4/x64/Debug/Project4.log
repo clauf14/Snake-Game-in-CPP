@@ -1,19 +1,40 @@
-﻿  SelectColorState.cpp
-X:\Learning\IALG Anul 2 Sem 1\Programare C++\SnakeGame\Project4\SelectColorState.cpp(30,38): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+﻿  GamePlay.cpp
+X:\Learning\IALG Anul 2 Sem 1\Programare C++\SnakeGame\Project4\GamePlay.cpp(21,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+X:\Learning\IALG Anul 2 Sem 1\Programare C++\SnakeGame\Project4\GamePlay.cpp(33,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+X:\Learning\IALG Anul 2 Sem 1\Programare C++\SnakeGame\Project4\GamePlay.cpp(64,33): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+X:\Learning\IALG Anul 2 Sem 1\Programare C++\SnakeGame\Project4\GamePlay.cpp(64,30): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+X:\Learning\IALG Anul 2 Sem 1\Programare C++\SnakeGame\Project4\GamePlay.cpp(87,25): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+X:\Learning\IALG Anul 2 Sem 1\Programare C++\SnakeGame\Project4\GamePlay.cpp(87,22): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+X:\Learning\IALG Anul 2 Sem 1\Programare C++\SnakeGame\Project4\GamePlay.cpp(95,52): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+X:\Learning\IALG Anul 2 Sem 1\Programare C++\SnakeGame\Project4\GamePlay.cpp(95,49): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+X:\Learning\IALG Anul 2 Sem 1\Programare C++\SnakeGame\Project4\GamePlay.cpp(136,58): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
           ]
-X:\Learning\IALG Anul 2 Sem 1\Programare C++\SnakeGame\Project4\SelectColorState.cpp(29,55): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+X:\Learning\IALG Anul 2 Sem 1\Programare C++\SnakeGame\Project4\GamePlay.cpp(140,55): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
           ]
-X:\Learning\IALG Anul 2 Sem 1\Programare C++\SnakeGame\Project4\SelectColorState.cpp(38,38): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+X:\Learning\IALG Anul 2 Sem 1\Programare C++\SnakeGame\Project4\GamePlay.cpp(143,85): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
           ]
-  TextBox.cpp
-  Generating Code...
+X:\Learning\IALG Anul 2 Sem 1\Programare C++\SnakeGame\Project4\GamePlay.cpp(143,51): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+X:\Learning\IALG Anul 2 Sem 1\Programare C++\SnakeGame\Project4\GamePlay.cpp(276,41): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+X:\Learning\IALG Anul 2 Sem 1\Programare C++\SnakeGame\Project4\GamePlay.cpp(276,38): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   Project4.vcxproj -> X:\Learning\IALG Anul 2 Sem 1\Programare C++\SnakeGame\x64\Debug\Project4.exe

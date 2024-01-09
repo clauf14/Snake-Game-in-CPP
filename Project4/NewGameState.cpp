@@ -236,12 +236,12 @@ void NewGameState::Update(const sf::Time& deltaTime)
         if (textBox.getText().length() == 1)
         {
             saveNameToFile("Anonymous", "assets/scores/playerName.txt");
-            saveNamesToFile("Anonymous", "assets/scores/names.txt");
+            saveNamesToFile("Anonymous", "assets/scores/peacefulNames.txt");
         }
         else
         {
             saveNameToFile(textBox.getText(), "assets/scores/playerName.txt");
-            saveNamesToFile(textBox.getText(), "assets/scores/names.txt");
+            saveNamesToFile(textBox.getText(), "assets/scores/peacefulNames.txt");
         }
 
         context->states->Add(std::make_unique<GamePlay>(context), true);
@@ -254,12 +254,12 @@ void NewGameState::Update(const sf::Time& deltaTime)
         if (textBox.getText().length() == 1)
         {
             saveNameToFile("Anonymous", "assets/scores/playerName.txt");
-            saveNamesToFile("Anonymous", "assets/scores/names.txt");
+            saveNamesToFile("Anonymous", "assets/scores/hardcoreNames.txt");
         }
         else
         {
             saveNameToFile(textBox.getText(), "assets/scores/playerName.txt");
-            saveNamesToFile(textBox.getText(), "assets/scores/names.txt");
+            saveNamesToFile(textBox.getText(), "assets/scores/hardcoreNames.txt");
         }
 
         context->states->Add(std::make_unique<GamePlay>(context), true);

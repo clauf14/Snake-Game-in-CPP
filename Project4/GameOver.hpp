@@ -14,6 +14,7 @@ public:
     GameOver(std::shared_ptr<GameContext>& context);
     ~GameOver();
 
+    string readDifficultyFromFile(const std::string& fileName);
     void readAndAppendNameToFile(const std::string& inputFileName, const std::string& outputFileName);
     void Init() override;
     void ProcessInput() override;
@@ -27,6 +28,8 @@ private:
     sf::Text exitButton;
     sf::Color blueColor;
     sf::Sprite background;
+
+    std::string diff;
 
     bool isRetryButtonSelected;
     bool isRetryButtonPressed;

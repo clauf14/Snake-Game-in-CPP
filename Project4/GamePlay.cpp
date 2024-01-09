@@ -220,7 +220,7 @@ void GamePlay::Update(const sf::Time& deltaTime)
                     if (snake.IsOn(obstacle))
                     {
                         gameOverSound.play();
-                        saveScoresToFile(score, "assets/scores/scores.txt");
+                        saveScoresToFile(score, "assets/scores/hardcoreScores.txt");
                         context->states->Add(std::make_unique<GameOver>(context), true);
                         return;  // Ieșiți imediat din funcție dacă șarpele a murit
                     }
@@ -231,7 +231,14 @@ void GamePlay::Update(const sf::Time& deltaTime)
                 if (snake.IsOn(wall))
                 {
                     gameOverSound.play();
-                    saveScoresToFile(score, "assets/scores/scores.txt");
+                    if (diff == "Hardcore")
+                    {
+                        saveScoresToFile(score, "assets/scores/hardcoreScores.txt");
+                    }
+                    else
+                    {
+                        saveScoresToFile(score, "assets/scores/peacefulScores.txt");
+                    }
                     context->states->Add(std::make_unique<GameOver>(context), true);
                     break;
                 }
@@ -279,7 +286,14 @@ void GamePlay::Update(const sf::Time& deltaTime)
             if (snake.IsSelfIntersecting())
             {
                 gameOverSound.play();   
-                saveScoresToFile(score, "assets/scores/scores.txt");
+                if (diff == "Hardcore")
+                {
+                    saveScoresToFile(score, "assets/scores/hardcoreScores.txt");
+                }
+                else
+                {
+                    saveScoresToFile(score, "assets/scores/peacefulScores.txt");
+                }
                 context->states->Add(std::make_unique<GameOver>(context), true);
             }
 

@@ -17,6 +17,8 @@ public:
     ~PauseGame();
 
     void saveZeroScore(const string& outputFile);
+    string readDifficultyFromFile(const std::string& fileName);
+
     void Init() override;
     void ProcessInput() override;
     void Update(const sf::Time& deltaTime) override;
@@ -30,6 +32,9 @@ private:
     sf::Text pauseTitle;
     sf::Text saveButton;
     Text exitButton;
+
+    string diff;
+
 
     bool isExitButtonSelected;
     bool isExitButtonPressed;

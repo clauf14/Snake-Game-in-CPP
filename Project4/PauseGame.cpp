@@ -30,8 +30,21 @@ void PauseGame::saveZeroScore(const string& outputFile)
     outFile.close();
 }
 
+string PauseGame::readDifficultyFromFile(const std::string& fileName)
+{
+    std::ifstream file("assets/scores/difficulty.txt", std::ios::binary);
+
+    string diff = "";
+    file >> diff;
+
+    return diff;
+}
+
+
 void PauseGame::Init()
 {
+
+    diff = readDifficultyFromFile("assets/scores/difficulty.txt");
     // Title
     pauseTitle.setFont(context->assets->getFont(MAIN_FONT));
     pauseTitle.setString("Paused");
@@ -152,7 +165,14 @@ void PauseGame::Update(const sf::Time& deltaTime)
     }
     if (isExitButtonPressed)
     {
-        saveZeroScore("assets/scores/scores.txt");
+        if (diff == "Hardcore")
+        {
+            saveZeroScore("assets/scores/hardcoreScores.txt");
+        }
+        else
+        {
+            saveZeroScore("assets/scores/peacefulScores.txt");
+        }
         context->states->Add(std::make_unique<MainMenu>(context), true);
     }
 }

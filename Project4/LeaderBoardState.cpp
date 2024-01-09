@@ -2,9 +2,7 @@
 
 LeaderBoardState::LeaderBoardState(std::shared_ptr<GameContext>& context)
     : context(context),
-     isExitButtonSelected(true),isExitButtonPressed(false),
-    scoreAndName(),
-    scoreVector(scoreAndName.begin(), scoreAndName.end())
+     isExitButtonSelected(true),isExitButtonPressed(false)
 {
     // Other constructor code, if needed
 }
@@ -13,7 +11,8 @@ LeaderBoardState::~LeaderBoardState()
 {
 }
 
-void LeaderBoardState::readNamesAndScoresFromFile(const std::string& namesFileName, const std::string& scoresFileName)
+void LeaderBoardState::readNamesAndScoresFromFile(const std::string& namesFileName, const std::string& scoresFileName,
+    std::map<std::string, int>& scoreAndName, std::vector<std::pair<std::string, int>>& sortedVector)
 {
     ifstream namesFile(namesFileName);
     ifstream scoresFile(scoresFileName);
@@ -41,7 +40,7 @@ void LeaderBoardState::readNamesAndScoresFromFile(const std::string& namesFileNa
     sortedVector = sortMapByValue(scoreAndName);
 }
 
-vector<pair<std::string, int>> LeaderBoardState::sortMapByValue(const std::map<std::string, int>& inputMap)
+vector<pair<std::string, int>> LeaderBoardState::sortMapByValue(std::map<std::string, int>& inputMap)
 {
     // Convert the map to a vector of pairs
     std::vector<std::pair<std::string, int>> vectorPairs(inputMap.begin(), inputMap.end());
@@ -63,10 +62,18 @@ vector<pair<std::string, int>> LeaderBoardState::sortMapByValue(const std::map<s
 void LeaderBoardState::Init()
 {
     // Mapping players informations
-    readNamesAndScoresFromFile("assets/scores/names.txt", "assets/scores/scores.txt");
-    std::vector<std::pair<std::string, int>> sortedVector = sortMapByValue(scoreAndName);
-    cout << endl << "After sorting:" << endl;
-    for (const auto& entry : sortedVector) {
+    readNamesAndScoresFromFile("assets/scores/peacefulNames.txt", "assets/scores/peacefulScores.txt",
+        peacefulScoreAndName, peacefulSortedVector);
+    readNamesAndScoresFromFile("assets/scores/hardcoreNames.txt", "assets/scores/hardcoreScores.txt",
+        hardcoreScoreAndName, hardcoreSortedVector);
+
+    cout << endl << "After sorting: peaceful" << endl;
+    for (const auto& entry : peacefulSortedVector) {
+        std::cout << "Leader: " << entry.first << ", Score: " << entry.second << std::endl;
+    }
+
+    cout << endl << "After sorting: hardcore" << endl;
+    for (const auto& entry : hardcoreSortedVector) {
         std::cout << "Leader: " << entry.first << ", Score: " << entry.second << std::endl;
     }
 
@@ -86,6 +93,10 @@ void LeaderBoardState::Init()
     peacefulLeaders.setFillColor(sf::Color::White);
     peacefulDif.setOrigin(peacefulDif.getLocalBounds().width / 2,
         peacefulDif.getLocalBounds().height / 2);
+
+    hardcoreLeaders.setFont(context->assets->getFont(MAIN_FONT));
+    hardcoreLeaders.setCharacterSize(30);
+    hardcoreLeaders.setFillColor(sf::Color::White);
 
     // Hardcore Difficulty Title
     hardcoreDif.setFont(context->assets->getFont(MAIN_FONT));
@@ -173,14 +184,27 @@ void LeaderBoardState::Update(const sf::Time& deltaTime)
 void LeaderBoardState::Draw()
 {
     context->window->draw(background);
+    //for peaceful table
     int i = 1;
-    for (const auto& entry : sortedVector)
+    for (const auto& entry : peacefulSortedVector)
     {
         if (i <= 10)
-        {   
+        {
             peacefulLeaders.setString(std::to_string(i) + ". " + entry.first + "   " + std::to_string(entry.second));
-            peacefulLeaders.setPosition(160, 130 + i * 40);
+            peacefulLeaders.setPosition(170, 130 + i * 40);
             context->window->draw(peacefulLeaders);
+        }
+        i++;
+    }
+    //for hardcore table
+    i = 1;
+    for (const auto& entry : hardcoreSortedVector)
+    {
+        if (i <= 10)
+        {
+            hardcoreLeaders.setString(std::to_string(i) + ". " + entry.first + "   " + std::to_string(entry.second));
+            hardcoreLeaders.setPosition(865, 130 + i * 40);
+            context->window->draw(hardcoreLeaders);
         }
         i++;
     }

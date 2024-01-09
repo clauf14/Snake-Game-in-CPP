@@ -23,8 +23,9 @@ public:
     LeaderBoardState(std::shared_ptr<GameContext>& context);
     ~LeaderBoardState();
 
-    void readNamesAndScoresFromFile(const std::string& namesFileName, const std::string& scoresFileName);
-    vector<pair<std::string, int>> sortMapByValue(const std::map<std::string, int>& inputMap);
+    void readNamesAndScoresFromFile(const std::string& namesFileName, const std::string& scoresFileName,
+        std::map<std::string, int>& scoreAndName, std::vector<std::pair<std::string, int>>& sortedVector);
+    vector<pair<std::string, int>> sortMapByValue(std::map<std::string, int>& inputMap);
 
     void Init() override;
     void ProcessInput() override;
@@ -36,14 +37,16 @@ private:
 
     Color blueColor;
     Text peacefulLeaders;
+    Text hardcoreLeaders;
     Text peacefulDif;
     Text hardcoreDif;
     Text exitButton;
     Sprite background;
 
-    map<string, int> scoreAndName;
-    std::vector<std::pair<std::string, int>> scoreVector;
-    std::vector<std::pair<std::string, int>> sortedVector;
+    map<string, int> peacefulScoreAndName;
+    map<string, int> hardcoreScoreAndName;
+    std::vector<std::pair<std::string, int>> peacefulSortedVector;
+    std::vector<std::pair<std::string, int>> hardcoreSortedVector;
 
     bool isExitButtonSelected;
     bool isExitButtonPressed;
