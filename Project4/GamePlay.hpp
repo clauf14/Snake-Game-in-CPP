@@ -8,6 +8,7 @@
 #include <SFML/Graphics/Text.hpp>
 #include <SFML/Audio/Sound.hpp>
 #include <SFML/Audio/SoundBuffer.hpp>
+#include <SFML/System/Clock.hpp>
 
 #include "Game.hpp"
 #include "State.hpp"
@@ -30,6 +31,8 @@ public:
 
     //Hardcore Diff
     void GenerateRandomObstacles(int numObstacles);
+    bool IsWallOverlapping(const sf::Sprite& wall);
+    //bool IsWallOverlapping(const sf::Sprite& newWall) const;
     void GenerateFood();
     bool IsFoodOnObstacle(int x, int y);
 
@@ -61,6 +64,10 @@ private:
 
     sf::Vector2f snakeDirection;
     sf::Time elapsedTime;
+    float totalElapsedTime;
+    sf::Clock timerClock;
+    sf::Time timerInterval = sf::seconds(1.0f);
+    sf::Text timerText;
 
     bool isPaused;
 };

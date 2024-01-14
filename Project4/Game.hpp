@@ -27,6 +27,7 @@ struct GameContext
     std::unique_ptr<Engine::AssetMan> assets;
     std::unique_ptr<Engine::StateMan> states;
     std::unique_ptr<sf::RenderWindow> window;
+    sf::Color selectedSnakeColor;
 
     GameContext()
     {

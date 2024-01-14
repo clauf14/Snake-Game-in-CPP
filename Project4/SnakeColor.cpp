@@ -6,7 +6,7 @@ using namespace sf;
 class SnakeColor
 {
 public:
-	SnakeColor() : snakeColor(sf::Color::Green) {
+	SnakeColor() : snakeColor(sf::Color::Blue) {
 
 	}
 
@@ -14,7 +14,7 @@ public:
 		return snakeColor;
 	}
 
-	Color setColor(Color& newColor) {
+	void setColor(Color& newColor) {
 		snakeColor = newColor;
 	}
 

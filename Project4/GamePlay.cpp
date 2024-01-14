@@ -33,12 +33,10 @@ GamePlay::GamePlay(std::shared_ptr<GameContext>& context, int score, float dirX,
     srand(time(nullptr));
 }
 
-// Set the score
 void GamePlay::setSnakeScore(int newScore) {
     score = newScore;
 }
 
-// Set the snake direction
 void GamePlay::setSnakeDirection(const sf::Vector2f& newDirection) {
     snakeDirection = newDirection;
 }
@@ -56,15 +54,36 @@ void GamePlay::GenerateRandomObstacles(int numObstacles)
 
     for (int i = 0; i < numObstacles; ++i)
     {
-        int x = xDist(gen);
-        int y = yDist(gen);
+        sf::Sprite newObstacle(context->assets->getTexture(WALL)); // Aici am mutat declaratia
 
-        // Adaugă o bucată de perete la coordonatele generate
-        sf::Sprite obstacle(context->assets->getTexture(WALL));
-        obstacle.setPosition(x, y);
-        obstacles.push_back(obstacle);
+        int x, y;
+
+        do
+        {
+            x = xDist(gen);
+            y = yDist(gen);
+
+            newObstacle.setPosition(x, y);
+
+        } while (IsWallOverlapping(newObstacle));
+
+        obstacles.push_back(newObstacle);
     }
 }
+
+bool GamePlay::IsWallOverlapping(const sf::Sprite& wall)
+{
+    for (const auto& existingWall : obstacles)
+    {
+        if (wall.getGlobalBounds().intersects(existingWall.getGlobalBounds()))
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 
 void GamePlay::GenerateFood()
 {
@@ -73,26 +92,26 @@ void GamePlay::GenerateFood()
     std::uniform_int_distribution<int> xDist(16, context->window->getSize().x - 2 * 16);
     std::uniform_int_distribution<int> yDist(16, context->window->getSize().y - 2 * 16);
 
-    // Generează inițial o poziție pentru mâncare
     int x, y;
 
-    // Verifică dacă poziția generată se află pe un obstacol
     do
     {
         x = xDist(gen);
         y = yDist(gen);
     } while (IsFoodOnObstacle(x, y));
 
-    // Setează poziția pentru mâncare
     food.setPosition(x, y);
 }
 
 bool GamePlay::IsFoodOnObstacle(int x, int y)
 {
-    // Verifică dacă mâncarea se află pe oricare obstacol
+    sf::FloatRect foodRect(x, y, food.getGlobalBounds().width, food.getGlobalBounds().height);
+
     for (const auto& obstacle : obstacles)
     {
-        if (obstacle.getGlobalBounds().contains(x, y))
+        sf::FloatRect obstacleRect = obstacle.getGlobalBounds();
+
+        if (foodRect.intersects(obstacleRect))
         {
             return true;
         }
@@ -121,7 +140,25 @@ void GamePlay::Init()
     context->assets->addTexture(GRASS, "assets/textures/grass-minecraft.jpg", true);
     context->assets->addTexture(FOOD, "assets/textures/food.png");
     context->assets->addTexture(WALL, "assets/textures/wall2.png", true);
-    context->assets->addTexture(SNAKE, "assets/textures/purple-snake.png");
+
+    if (context->selectedSnakeColor == sf::Color(0, 128, 0))        //green
+        context->assets->addTexture(SNAKE, "assets/textures/green-snake.png");
+
+    if (context->selectedSnakeColor == sf::Color(248, 131, 121))    ///pink
+        context->assets->addTexture(SNAKE, "assets/textures/pink-snake.png");
+
+    if (context->selectedSnakeColor == sf::Color::Blue)
+        context->assets->addTexture(SNAKE, "assets/textures/blue-snake.png");
+
+    if (context->selectedSnakeColor == sf::Color::Black)
+        context->assets->addTexture(SNAKE, "assets/textures/black-snake.png");
+
+    if (context->selectedSnakeColor == sf::Color(255, 165, 0))      //orange
+        context->assets->addTexture(SNAKE, "assets/textures/orange-snake.png");
+
+    if(context->selectedSnakeColor == sf::Color(87,0,246))
+        context->assets->addTexture(SNAKE, "assets/textures/purple-snake.png");
+    
 
     grass.setTexture(context->assets->getTexture(GRASS));
     grass.setTextureRect(context->window->getViewport(context->window->getDefaultView()));
@@ -144,6 +181,11 @@ void GamePlay::Init()
 
     snake.Init(context->assets->getTexture(SNAKE));
 
+    if (diff == "Hardcore")
+    {
+        GenerateRandomObstacles(30);
+    }
+
     scoreText.setFont(context->assets->getFont(MAIN_FONT));
     scoreText.setString("Score : " + std::to_string(score));
     scoreText.setPosition(sf::Vector2f(20.f, 20.f));
@@ -153,11 +195,13 @@ void GamePlay::Init()
     playerName.setString("Player name: " + ReadPlayerName("assets/scores/playerName.txt"));
     playerName.setPosition(sf::Vector2f(20.f, 50.f));
     playerName.setCharacterSize(20);
+    
+    timerText.setFont(context->assets->getFont(MAIN_FONT));
+    timerText.setFillColor(sf::Color::White); 
+    timerText.setPosition(context->window->getSize().x - 120.f, 20.f);
+    timerText.setCharacterSize(20);
 
-    if (diff == "Hardcore")
-    {
-        GenerateRandomObstacles(30);
-    }
+    timerClock.restart();
 }
 
 void GamePlay::ProcessInput()
@@ -211,6 +255,13 @@ void GamePlay::Update(const sf::Time& deltaTime)
     {
         elapsedTime += deltaTime;
 
+        if (timerClock.getElapsedTime() >= timerInterval)
+        {
+            timerClock.restart();
+            totalElapsedTime += timerInterval.asSeconds();
+            //std::cout << "Time: " << totalElapsedTime << " seconds" << std::endl;
+        }
+
         if (elapsedTime.asSeconds() > speed)
         {
             if (diff == "Hardcore")
@@ -222,10 +273,11 @@ void GamePlay::Update(const sf::Time& deltaTime)
                         gameOverSound.play();
                         saveScoresToFile(score, "assets/scores/hardcoreScores.txt");
                         context->states->Add(std::make_unique<GameOver>(context), true);
-                        return;  // Ieșiți imediat din funcție dacă șarpele a murit
+                        return;
                     }
                 }
             }
+
             for (auto& wall : walls)
             {
                 if (snake.IsOn(wall))
@@ -254,7 +306,7 @@ void GamePlay::Update(const sf::Time& deltaTime)
                     score += 1;
                     scoreText.setString("Score : " + std::to_string(score));
 
-                    if (score % 3 == 0 && score != 0)
+                    if (score % 5 == 0 && score != 0)
                     {
                         speed -= 0.005;
                     }
@@ -276,7 +328,7 @@ void GamePlay::Update(const sf::Time& deltaTime)
                     food.setPosition(x, y);
                     score += 1;
                     scoreText.setString("Score : " + std::to_string(score));
-                }          
+                }
             }
             else
             {
@@ -285,7 +337,7 @@ void GamePlay::Update(const sf::Time& deltaTime)
 
             if (snake.IsSelfIntersecting())
             {
-                gameOverSound.play();   
+                gameOverSound.play();
                 if (diff == "Hardcore")
                 {
                     saveScoresToFile(score, "assets/scores/hardcoreScores.txt");
@@ -300,61 +352,6 @@ void GamePlay::Update(const sf::Time& deltaTime)
             elapsedTime = sf::Time::Zero;
         }
     }
-}
-
-void GamePlay::saveScoresToFile(const int& score, const std::string& fileName)
-{
-    std::ofstream file(fileName, std::ios::app);
-    if (file.is_open())
-    {
-        file << score << std::endl;
-        file.close();
-        std::cout << "Score saved to file: " << score << std::endl;
-    }
-    else
-    {
-        std::cerr << "Unable to open file for writing: " << fileName << std::endl;
-    }
-}
-
-string GamePlay::ReadPlayerName(const std::string& filename)
-{
-    std::ifstream file("assets/scores/playerName.txt", std::ios::binary);
-
-    string data = "";
-    file >> data;
-
-    return data;
-}
-
-string GamePlay::readDifficultyFromFile(const std::string& fileName)
-{
-    std::ifstream file("assets/scores/difficulty.txt", std::ios::binary);
-
-    string diff = "";
-    file >> diff;
-
-    return diff;
-}
-
-void GamePlay::SaveGameState(const std::string& filename, int score, float posX, float posY, float dirX, float dirY) {
-    std::ofstream file(filename, std::ios::binary);
-
-    if (!file.is_open()) {
-        std::cerr << "Error opening file for saving: " << filename << std::endl;
-        return;
-    }
-    
-    std::string fileContent = ReadPlayerName("assets/scores/playerName.txt");
-    std::string dif = readDifficultyFromFile("assets/scores/difficulty.txt");
-
-    file << fileContent << '\n';
-    file << score << '\n';
-    file << posX << '\n';
-    file << posY << '\n';
-    file << dirX << '\n';
-    file << dirY << '\n';
-    file << dif << '\n';
 }
 
 void GamePlay::Draw()
@@ -378,6 +375,9 @@ void GamePlay::Draw()
     context->window->draw(scoreText);
     context->window->draw(playerName);
 
+    timerText.setString("Time: " + std::to_string((int)totalElapsedTime) + "s");
+    context->window->draw(timerText);
+
     context->window->display();
 }
 
@@ -389,4 +389,48 @@ void GamePlay::Pause()
 void GamePlay::Start()
 {
     isPaused = false;
+}
+
+void GamePlay::saveScoresToFile(const int& score, const std::string& fileName)
+{
+    std::ofstream file(fileName);
+    if (file.is_open())
+    {
+        file << score;
+        file.close();
+    }
+}
+
+string GamePlay::ReadPlayerName(const std::string& filename)
+{
+    std::ifstream file(filename);
+    std::string playerName;
+    if (file.is_open())
+    {
+        file >> playerName;
+        file.close();
+    }
+    return playerName;
+}
+
+string GamePlay::readDifficultyFromFile(const std::string& fileName)
+{
+    std::ifstream file(fileName);
+    std::string difficulty;
+    if (file.is_open())
+    {
+        file >> difficulty;
+        file.close();
+    }
+    return difficulty;
+}
+
+void GamePlay::SaveGameState(const std::string& filename, int score, float posX, float posY, float dirX, float dirY)
+{
+    std::ofstream file(filename);
+    if (file.is_open())
+    {
+        file << score << " " << posX << " " << posY << " " << dirX << " " << dirY;
+        file.close();
+    }
 }

@@ -19,7 +19,6 @@ MainMenu::~MainMenu()
 
 void MainMenu::Init()
 {
-
     blueColor = sf::Color(102, 178, 255);
 
     this->background.setSize(Vector2f(1280, 720));
@@ -35,7 +34,8 @@ void MainMenu::Init()
     menuBackground.setSize(sf::Vector2f(500, 720));
 
     snakeBackground.setSize(sf::Vector2f(670, 670));
-    snakeBackground.setFillColor(snakeColor.getColor());
+    snakeBackground.setFillColor(context->selectedSnakeColor);
+    cout << snakeColor.getColor().toInteger();
     snakeBackground.setPosition(Vector2f(550, 20));
 
 
@@ -318,6 +318,7 @@ void MainMenu::Update(const sf::Time& deltaTime)
         context->window->close();
     }
     
+    snakeBackground.setFillColor(context->selectedSnakeColor);
 }
 
 void MainMenu::Draw()
