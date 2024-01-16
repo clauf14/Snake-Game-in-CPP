@@ -208,10 +208,10 @@ string* PauseGame::writeTemporaryDataToFinal(const std::string& fromFile, const 
     }
 
     // Allocate memory for an array of 5 elements
-    string* data = new string[7];
+    string* data = new string[13];
 
     // Read the data from the file
-    for (int i = 0; i < 7; ++i) {
+    for (int i = 0; i < 13; ++i) {
         file >> data[i];
         file1 << data[i] << '\n';
     }

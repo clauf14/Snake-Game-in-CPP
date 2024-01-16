@@ -33,7 +33,8 @@ void LoadGameState::Init()
 
     // Set the text for the Continue button with the saved score
     continueButton.setFont(context->assets->getFont(MAIN_FONT));
-    continueButton.setString("Continue -> Player name: " + playerName + " || Difficulty: " + saveData[6] + " || Score: " + std::to_string(savedScore));
+    continueButton.setString("Continue -> Player name: " + playerName + " || Difficulty: " + saveData[6] + 
+        " || Score: " + std::to_string(savedScore) + " || Time: " + saveData[7] + "s");
     continueButton.setOrigin(continueButton.getLocalBounds().width / 2,
         continueButton.getLocalBounds().height / 2);
     continueButton.setPosition(context->window->getSize().x / 2,
@@ -126,11 +127,20 @@ void LoadGameState::Update(const sf::Time& deltaTime)
         float dirX = stof(savedData[4]);
         float dirY = stof(savedData[5]);
         string diff = savedData[6];
+        int timer = stoi(savedData[7]);
 
-        context->states->Add(std::make_unique<GamePlay>(context, score , dirX, dirY, posX, posY, diff), true);
+        int r = stoi(savedData[8]);
+        int g = stoi(savedData[9]);
+        int b = stoi(savedData[10]);
+        int a = stoi(savedData[11]);
+
+        sf::Color color (r, g, b, a);
+        
+        context->states->Add(std::make_unique<GamePlay>(context, score , dirX, dirY, posX, posY, diff, color, timer), true);
 
     }
 }
+
 
 
 string* LoadGameState::ReadDataFromFile(const std::string& filename) {
@@ -142,10 +152,10 @@ string* LoadGameState::ReadDataFromFile(const std::string& filename) {
         return nullptr;
     }
 
-    string* data = new string[7];
+    string* data = new string[13];
 
     // Read the data from the file
-    for (int i = 0; i < 7; ++i) {
+    for (int i = 0; i < 13; ++i) {
         file >> data[i];
     }
 

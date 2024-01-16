@@ -16,19 +16,23 @@ GamePlay::GamePlay(std::shared_ptr<GameContext>& context)
     snakeDirection({ 16.f, 0.f }),
     elapsedTime(sf::Time::Zero),
     isPaused(false),
-    snake(4, 16.f, 16.f)
+    snake(4, 16.f, 16.f),
+    snakeColor(context->selectedSnakeColor)
 {
     srand(time(nullptr));
 }
 
-GamePlay::GamePlay(std::shared_ptr<GameContext>& context, int score, float dirX, float dirY, float posX, float posY, string difficulty)
+GamePlay::GamePlay(std::shared_ptr<GameContext>& context, int score, float dirX, float dirY, float posX, float posY, 
+string difficulty, sf::Color color, int timer)
     : context(context),
     score(score),
     snakeDirection({ dirX, dirY }),
     elapsedTime(sf::Time::Zero),
     isPaused(false),
     snake(4 + score, posX, posY),
-    diff(difficulty)
+    diff(difficulty),
+    snakeColor(color),
+    totalElapsedTime(timer)
 {
     srand(time(nullptr));
 }
@@ -141,22 +145,22 @@ void GamePlay::Init()
     context->assets->addTexture(FOOD, "assets/textures/food.png");
     context->assets->addTexture(WALL, "assets/textures/wall2.png", true);
 
-    if (context->selectedSnakeColor == sf::Color(0, 128, 0))        //green
+    if (snakeColor == sf::Color(0, 128, 0))        //green
         context->assets->addTexture(SNAKE, "assets/textures/green-snake.png");
 
-    if (context->selectedSnakeColor == sf::Color(248, 131, 121))    ///pink
+    if (snakeColor == sf::Color(248, 131, 121))    ///pink
         context->assets->addTexture(SNAKE, "assets/textures/pink-snake.png");
 
-    if (context->selectedSnakeColor == sf::Color::Blue)
+    if (snakeColor == sf::Color::Blue)
         context->assets->addTexture(SNAKE, "assets/textures/blue-snake.png");
 
-    if (context->selectedSnakeColor == sf::Color::Black)
+    if (snakeColor == sf::Color::Black)
         context->assets->addTexture(SNAKE, "assets/textures/black-snake.png");
 
-    if (context->selectedSnakeColor == sf::Color(255, 165, 0))      //orange
+    if (snakeColor == sf::Color(255, 165, 0))      //orange
         context->assets->addTexture(SNAKE, "assets/textures/orange-snake.png");
 
-    if(context->selectedSnakeColor == sf::Color(87,0,246))
+    if( snakeColor == sf::Color(87,0,246))
         context->assets->addTexture(SNAKE, "assets/textures/purple-snake.png");
     
 
@@ -232,7 +236,7 @@ void GamePlay::ProcessInput()
                 break;
             case sf::Keyboard::Escape:
                 SaveGameState("assets/savedGameScores/temporaryScores.txt", snake.getScore(score), snake.getPosX(), snake.getPosY(),
-                    snake.getDirX(snakeDirection), snake.getDirY(snakeDirection));
+                    snake.getDirX(snakeDirection), snake.getDirY(snakeDirection), snakeColor, totalElapsedTime);
                 context->states->Add(std::make_unique<PauseGame>(context));
                 break;
 
@@ -259,7 +263,7 @@ void GamePlay::Update(const sf::Time& deltaTime)
         {
             timerClock.restart();
             totalElapsedTime += timerInterval.asSeconds();
-            //std::cout << "Time: " << totalElapsedTime << " seconds" << std::endl;
+            std::cout << "Time: " << totalElapsedTime << " seconds" << std::endl;
         }
 
         if (elapsedTime.asSeconds() > speed)
@@ -354,6 +358,67 @@ void GamePlay::Update(const sf::Time& deltaTime)
     }
 }
 
+void GamePlay::saveScoresToFile(const int& score, const std::string& fileName)
+{
+    std::ofstream file(fileName, std::ios::app);
+    if (file.is_open())
+    {
+        file << score << std::endl;
+        file.close();
+        std::cout << "Score saved to file: " << score << std::endl;
+    }
+    else
+    {
+        std::cerr << "Unable to open file for writing: " << fileName << std::endl;
+    }
+}
+
+string GamePlay::ReadPlayerName(const std::string& filename)
+{
+    std::ifstream file("assets/scores/playerName.txt", std::ios::binary);
+
+    string data = "";
+    file >> data;
+
+    return data;
+}
+
+string GamePlay::readDifficultyFromFile(const std::string& fileName)
+{
+    std::ifstream file("assets/scores/difficulty.txt", std::ios::binary);
+
+    string diff = "";
+    file >> diff;
+
+    return diff;
+}
+
+void GamePlay::SaveGameState(const std::string& filename, int score, float posX, float posY, float dirX, float dirY, sf::Color snakeSavedColor, int timer) {
+    std::ofstream file(filename, std::ios::binary);
+
+    if (!file.is_open()) {
+        std::cerr << "Error opening file for saving: " << filename << std::endl;
+        return;
+    }
+
+    std::string fileContent = ReadPlayerName("assets/scores/playerName.txt");
+    std::string dif = readDifficultyFromFile("assets/scores/difficulty.txt");
+    float timerTime = timer;
+
+    file << fileContent << '\n';
+    file << score << '\n';
+    file << posX << '\n';
+    file << posY << '\n';
+    file << dirX << '\n';
+    file << dirY << '\n';
+    file << dif << '\n';
+    file << timerTime << '\n';
+    file << static_cast<int>(context->selectedSnakeColor.r) << '\n';
+    file << static_cast<int>(context->selectedSnakeColor.g) << '\n';
+    file << static_cast<int>(context->selectedSnakeColor.b) << '\n';
+    file << static_cast<int>(context->selectedSnakeColor.a) << '\n';
+}
+
 void GamePlay::Draw()
 {
     context->window->clear();
@@ -389,48 +454,4 @@ void GamePlay::Pause()
 void GamePlay::Start()
 {
     isPaused = false;
-}
-
-void GamePlay::saveScoresToFile(const int& score, const std::string& fileName)
-{
-    std::ofstream file(fileName);
-    if (file.is_open())
-    {
-        file << score;
-        file.close();
-    }
-}
-
-string GamePlay::ReadPlayerName(const std::string& filename)
-{
-    std::ifstream file(filename);
-    std::string playerName;
-    if (file.is_open())
-    {
-        file >> playerName;
-        file.close();
-    }
-    return playerName;
-}
-
-string GamePlay::readDifficultyFromFile(const std::string& fileName)
-{
-    std::ifstream file(fileName);
-    std::string difficulty;
-    if (file.is_open())
-    {
-        file >> difficulty;
-        file.close();
-    }
-    return difficulty;
-}
-
-void GamePlay::SaveGameState(const std::string& filename, int score, float posX, float posY, float dirX, float dirY)
-{
-    std::ofstream file(filename);
-    if (file.is_open())
-    {
-        file << score << " " << posX << " " << posY << " " << dirX << " " << dirY;
-        file.close();
-    }
 }

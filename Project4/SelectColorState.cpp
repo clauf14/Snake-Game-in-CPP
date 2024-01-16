@@ -29,23 +29,26 @@ SelectColorState::~SelectColorState()
 void SelectColorState::Init()
 {
     //// Set up the background
-    this->background.setSize(Vector2f(1280, 720));
-    this->background.setFillColor(Color::White);
 
     //// Add the texture for the snake image
     context->assets->addTexture(SNAKE_IMAGE, "assets/textures/snakeImage.png");
     snakeImageSprite.setTexture(context->assets->getTexture(SNAKE_IMAGE));
-    snakeImageSprite.setScale(0.4,0.4);
-    snakeImageSprite.setPosition(550, 120);
+    snakeImageSprite.setOrigin(snakeImageSprite.getLocalBounds().width / 2,
+        snakeImageSprite.getLocalBounds().height / 2);
+    snakeImageSprite.setScale(0.6,0.6);
+    snakeImageSprite.setPosition(context->window->getSize().x / 2, //latime (cu - e in stanga, cu + in dreapta)
+        context->window->getSize().y / 2); //inaltime (cu - e in sus, cu + in jos)
+
+    context->assets->addTexture(NORMAL_BACKGROUND, "assets/textures/normalBackground.jpg");
+    background.setTexture(context->assets->getTexture(NORMAL_BACKGROUND));
 
     //// Set up the background for displaying the selected color
-    snakeBackground.setSize(sf::Vector2f(250, 270));
+    snakeBackground.setSize(sf::Vector2f(370, 400));
     snakeBackground.setFillColor(context->selectedSnakeColor);
-    snakeBackground.setPosition(Vector2f(550, 120));
-
-    //// Set up the overall background
-    this->background.setSize(Vector2f(1280, 720));
-    this->background.setFillColor(sf::Color(102, 178, 255));
+    snakeBackground.setOrigin(snakeBackground.getLocalBounds().width / 2,
+        snakeBackground.getLocalBounds().height / 2);
+    snakeBackground.setPosition(context->window->getSize().x / 2, //latime (cu - e in stanga, cu + in dreapta)
+        context->window->getSize().y / 2); //inaltime (cu - e in sus, cu + in jos)
 
     //// Add the texture for the help image
     context->assets->addTexture(SNAKE_HELP_IMAGE, "assets/textures/snakeHelpImage.jpg");
@@ -61,7 +64,7 @@ void SelectColorState::Init()
         colorOne.getLocalBounds().height / 2);
     colorOne.setPosition(context->window->getSize().x / 2 - 400, //latime (cu - e in stanga, cu + in dreapta)
         context->window->getSize().y / 2 - 150); //inaltime (cu - e in sus, cu + in jos)
-    colorOne.setCharacterSize(20);
+    colorOne.setCharacterSize(30);
 
     //colorTwo
     colorTwo.setFont(context->assets->getFont(MAIN_FONT));
@@ -70,7 +73,7 @@ void SelectColorState::Init()
         colorTwo.getLocalBounds().height / 2);
     colorTwo.setPosition(context->window->getSize().x / 2 - 400, //latime (cu - e in stanga, cu + in dreapta)
         context->window->getSize().y / 2 + 0); //inaltime (cu - e in sus, cu + in jos)
-    colorTwo.setCharacterSize(20);
+    colorTwo.setCharacterSize(30);
 
     //colorThree
     colorThree.setFont(context->assets->getFont(MAIN_FONT));
@@ -79,7 +82,7 @@ void SelectColorState::Init()
         colorThree.getLocalBounds().height / 2);
     colorThree.setPosition(context->window->getSize().x / 2 - 400, //latime (cu - e in stanga, cu + in dreapta)
         context->window->getSize().y / 2 + 150); //inaltime (cu - e in sus, cu + in jos)
-    colorThree.setCharacterSize(20);
+    colorThree.setCharacterSize(30);
 
     //colorFour
     colorFour.setFont(context->assets->getFont(MAIN_FONT));
@@ -88,7 +91,7 @@ void SelectColorState::Init()
         colorFour.getLocalBounds().height / 2);
     colorFour.setPosition(context->window->getSize().x / 2 + 400, //latime (cu - e in stanga, cu + in dreapta)
         context->window->getSize().y / 2 + -150); //inaltime (cu - e in sus, cu + in jos)
-    colorFour.setCharacterSize(20);
+    colorFour.setCharacterSize(30);
 
     //colorFive
     colorFive.setFont(context->assets->getFont(MAIN_FONT));
@@ -97,7 +100,7 @@ void SelectColorState::Init()
         colorFive.getLocalBounds().height / 2);
     colorFive.setPosition(context->window->getSize().x / 2 + 400, //latime (cu - e in stanga, cu + in dreapta)
         context->window->getSize().y / 2 + 0); //inaltime (cu - e in sus, cu + in jos)
-    colorFive.setCharacterSize(20);
+    colorFive.setCharacterSize(30);
 
     //colorSix
     colorSix.setFont(context->assets->getFont(MAIN_FONT));
@@ -106,7 +109,7 @@ void SelectColorState::Init()
         colorSix.getLocalBounds().height / 2);
     colorSix.setPosition(context->window->getSize().x / 2 + 400, //latime (cu - e in stanga, cu + in dreapta)
         context->window->getSize().y / 2 + 150); //inaltime (cu - e in sus, cu + in jos)
-    colorSix.setCharacterSize(20);
+    colorSix.setCharacterSize(30);
 
     // Exit Button
     exitButton.setFont(context->assets->getFont(MAIN_FONT));

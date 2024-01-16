@@ -16,7 +16,7 @@ private:
     Text colorSix;
     Text exitButton;
 
-    RectangleShape background;
+    Sprite background;
     RectangleShape menuBackground;
     RectangleShape snakeBackground;
     SnakeColor snakeColor;

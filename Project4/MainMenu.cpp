@@ -19,7 +19,6 @@ MainMenu::~MainMenu()
 
 void MainMenu::Init()
 {
-    blueColor = sf::Color(102, 178, 255);
 
     this->background.setSize(Vector2f(1280, 720));
     this->background.setFillColor(Color::White);

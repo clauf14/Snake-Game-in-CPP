@@ -18,14 +18,14 @@ class GamePlay : public Engine::State
 {
 public:
     GamePlay(std::shared_ptr<GameContext>& context);
-    GamePlay(std::shared_ptr<GameContext>& context, int score, float dirX, float dirY, float posX, float posY, string difficulty);
+    GamePlay(std::shared_ptr<GameContext>& context, int score, float dirX, float dirY, float posX, float posY, string difficulty, sf::Color color, int timer);
     ~GamePlay();
 
     void saveScoresToFile(const int& score, const std::string& fileName);
 
     void setSnakeScore(int newScore);
     void setSnakeDirection(const sf::Vector2f& newDirection);
-    void SaveGameState(const std::string& filename, int score, float posX, float posY, float dirX, float dirY);
+    void SaveGameState(const std::string& filename, int score, float posX, float posY, float dirX, float dirY, sf::Color snakeSavedColor, int timer);
     string ReadPlayerName(const std::string& filename);
     string readDifficultyFromFile(const std::string& fileName);
 
@@ -50,6 +50,7 @@ private:
     std::array<sf::Sprite, 4> walls;
     std::vector<sf::Sprite> obstacles;
     Snake snake;
+    sf::Color snakeColor;
     double speed = 0.1;
 
     sf::Sound eatSound;

@@ -36,6 +36,7 @@ void GameOver::readAndAppendNameToFile(const std::string& inputFileName, const s
     outputFile.close();
 }
 
+
 string GameOver::readDifficultyFromFile(const std::string& fileName)
 {
     std::ifstream file("assets/scores/difficulty.txt", std::ios::binary);
@@ -49,6 +50,7 @@ string GameOver::readDifficultyFromFile(const std::string& fileName)
 
 void GameOver::Init()
 {
+
     diff = readDifficultyFromFile("assets/scores/difficulty.txt");
 
     context->assets->addTexture(NORMAL_BACKGROUND, "assets/textures/normalBackground.jpg");
