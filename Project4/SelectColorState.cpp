@@ -263,7 +263,7 @@ void SelectColorState::Update(const sf::Time& deltaTime)
 
     if (isColorOneButtonSelected)
     {
-        colorOne.setFillColor(selectedColor);
+        colorOne.setFillColor(sf::Color::Green);
         colorTwo.setFillColor(defaultColor);
         colorThree.setFillColor(defaultColor);
         colorFour.setFillColor(defaultColor);
@@ -273,7 +273,7 @@ void SelectColorState::Update(const sf::Time& deltaTime)
     }
     else if (isColorTwoButtonSelected)
     {
-        colorTwo.setFillColor(selectedColor);
+        colorTwo.setFillColor(sf::Color(248, 131, 121));
         colorOne.setFillColor(defaultColor);
         colorThree.setFillColor(defaultColor);
         colorFour.setFillColor(defaultColor);
@@ -283,7 +283,7 @@ void SelectColorState::Update(const sf::Time& deltaTime)
     }
     else if (isColorThreeButtonSelected)
     {
-        colorThree.setFillColor(selectedColor);
+        colorThree.setFillColor(sf::Color(0, 0, 255));
         colorOne.setFillColor(defaultColor);
         colorTwo.setFillColor(defaultColor);
         colorFour.setFillColor(defaultColor);
@@ -293,7 +293,7 @@ void SelectColorState::Update(const sf::Time& deltaTime)
     }
     else if (isColorFourButtonSelected)
     {
-        colorFour.setFillColor(selectedColor);
+        colorFour.setFillColor(sf::Color(0, 0, 0));
         colorOne.setFillColor(defaultColor);
         colorTwo.setFillColor(defaultColor);
         colorThree.setFillColor(defaultColor);
@@ -303,7 +303,7 @@ void SelectColorState::Update(const sf::Time& deltaTime)
     }
     else if (isColorFiveButtonSelected)
     {
-        colorFive.setFillColor(selectedColor);
+        colorFive.setFillColor(sf::Color(255, 165, 0));
         colorOne.setFillColor(defaultColor);
         colorTwo.setFillColor(defaultColor);
         colorThree.setFillColor(defaultColor);
@@ -313,7 +313,7 @@ void SelectColorState::Update(const sf::Time& deltaTime)
     }
     else if (isColorSixButtonSelected)
     {
-        colorSix.setFillColor(selectedColor);
+        colorSix.setFillColor(sf::Color(87, 0, 246));
         colorOne.setFillColor(defaultColor);
         colorTwo.setFillColor(defaultColor);
         colorThree.setFillColor(defaultColor);

@@ -34,7 +34,7 @@ void MainMenu::Init()
 
     snakeBackground.setSize(sf::Vector2f(670, 670));
     snakeBackground.setFillColor(context->selectedSnakeColor);
-    cout << snakeColor.getColor().toInteger();
+    //cout << snakeColor.getColor().toInteger();
     snakeBackground.setPosition(Vector2f(550, 20));
 
 
