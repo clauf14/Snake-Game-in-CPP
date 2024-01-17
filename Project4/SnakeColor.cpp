@@ -6,7 +6,7 @@ using namespace sf;
 class SnakeColor
 {
 public:
-	SnakeColor() : snakeColor(sf::Color::Blue) {
+	SnakeColor() : snakeColor(sf::Color(0, 128, 0)) {
 
 	}
 

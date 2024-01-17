@@ -263,7 +263,7 @@ void SelectColorState::Update(const sf::Time& deltaTime)
 
     if (isColorOneButtonSelected)
     {
-        colorOne.setFillColor(sf::Color::Green);
+        colorOne.setFillColor(sf::Color(0,128,0));
         colorTwo.setFillColor(defaultColor);
         colorThree.setFillColor(defaultColor);
         colorFour.setFillColor(defaultColor);
